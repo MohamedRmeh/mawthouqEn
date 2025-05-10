@@ -50,12 +50,12 @@ const Navbar = () => {
         {/* Buttons - Right */}
         <div className="hidden lg:flex items-center gap-4">
           <Link href="/login">
-            <button className="bg-blue-500 text-white font-medium px-6 py-2 rounded-lg transition-all duration-300 hover:bg-blue-600 shadow-sm cursor-pointer">
+            <button className="bg-blue-500 text-white font-medium px-6 py-1.5 rounded-lg transition-all duration-300 hover:bg-blue-600 shadow-sm cursor-pointer text-[15px]">
               Login
             </button>
           </Link>
           <Link href="/signup">
-            <button className="border border-[#21275c] text-[#21275c] font-medium px-6 py-2 rounded-lg transition-all duration-300 hover:bg-[#21275c]/10 shadow-sm cursor-pointer">
+            <button className="border border-slate-400 text-[#21275c] font-medium px-5 py-1.5 rounded-lg transition-all duration-300 hover:bg-[#21275c]/10 shadow-sm cursor-pointer text-[15px]">
               Sign Up
             </button>
           </Link>
