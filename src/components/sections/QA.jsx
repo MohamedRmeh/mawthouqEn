@@ -40,7 +40,7 @@ const QA = () => {
   };
 
   return (
-    <section className="mt-26 px-5 md:px-28 mb-36">
+    <section className="mt-26 px-5 md:px-26 mb-36">
       <div className="w-full grid grid-cols-1 md:grid-cols-5 gap-10">
         <div
           className="md:col-span-2 flex flex-col justify-center"

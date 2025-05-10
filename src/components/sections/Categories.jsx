@@ -42,7 +42,7 @@ const Categories = () => {
     overflow-hidden 
     "
     >
-      <div className="md:px-32 px-8 mt-16 mb-20">
+      <div className="md:px-26 px-8 mt-16 mb-20">
         <div className="w-full">
           <div className="grid md:grid-cols-2 items-center mb-24 gap-4">
             <div data-aos="fade-right" className="space-y-6">

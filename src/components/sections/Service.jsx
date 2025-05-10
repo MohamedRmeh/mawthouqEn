@@ -14,7 +14,7 @@ const Service = () => {
     bg-no-repeat
     "
     >
-      <div className="flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-4 p-8 py-14 lg:p-16">
+      <div className="flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-4 p-8 py-14 lg:px-26">
         {/* Text Content */}
         <div data-aos="fade-right" className="w-full lg:w-[60%] space-y-7">
           <h1 className="text-3xl lg:text-5xl font-bold text-[#21275c] leading-tight">

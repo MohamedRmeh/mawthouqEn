@@ -2,17 +2,14 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { FaLanguage } from "react-icons/fa";
 import { HiMenu, HiX } from "react-icons/hi";
+import { HiOutlineGlobeAlt } from "react-icons/hi";
 
 const navLinks = [
-  { href: "#home", label: "Home" },
-  { href: "#catalog", label: "Catalog" },
-  { href: "#about", label: "About" },
-  { href: "#services", label: "Services" },
-  { href: "#contact", label: "Contact" },
-  { href: "#support", label: "Support" },
-  { href: "#login", label: "Login" },
+  { href: "/", label: "Home" },
+  { href: "#catalog", label: "Marketplace" },
+  { href: "#about", label: "About Us" },
+  { href: "#support", label: "Help & Support" },
 ];
 
 const Navbar = () => {
@@ -24,9 +21,9 @@ const Navbar = () => {
 
   return (
     <nav className="bg-[#f5f7fa] top-0 z-50">
-      <div className="flex items-center justify-between px-6 lg:px-48 py-4">
-        {/* Logo */}
-        <div className="flex items-center">
+      <div className="flex items-center justify-between px-6 lg:px-26 py-4 lg:py-6 relative">
+        {/* Logo - Left */}
+        <div className="flex items-center flex-shrink-0">
           <Image
             src="/icons/png-we.png"
             alt="Company Logo"
@@ -36,24 +33,36 @@ const Navbar = () => {
           />
         </div>
 
-        {/* Desktop Links */}
-        <ul className="hidden lg:flex items-center gap-7">
+        {/* Links - Center */}
+        <ul className="hidden lg:flex absolute left-1/2 transform -translate-x-1/2 items-center gap-7">
           {navLinks.map((link) => (
             <li key={link.label}>
               <Link
                 href={link.href}
-                className="relative text-[#737373] font-medium transition-colors duration-300 hover:text-black before:content-[''] before:absolute before:left-0 before:-bottom-1 before:h-[2px] before:w-0 before:bg-blue-500 before:transition-all before:duration-300 hover:before:w-full"
+                className="relative text-[#737373] text-[17px] font-medium transition-colors duration-300 hover:text-black before:content-[''] before:absolute before:left-0 before:-bottom-1 before:h-[2px] before:w-0 before:bg-blue-500 before:transition-all before:duration-300 hover:before:w-full"
               >
                 {link.label}
               </Link>
             </li>
           ))}
-          <li>
-            <button className="flex items-center text-[#737373] font-medium transition-colors duration-300 hover:text-black cursor-pointer">
-              <FaLanguage size={24} />
-            </button>
-          </li>
         </ul>
+
+        {/* Buttons - Right */}
+        <div className="hidden lg:flex items-center gap-4">
+          <Link href="/login">
+            <button className="bg-blue-500 text-white font-medium px-6 py-2 rounded-lg transition-all duration-300 hover:bg-blue-600 shadow-sm cursor-pointer">
+              Login
+            </button>
+          </Link>
+          <Link href="/signup">
+            <button className="border border-[#21275c] text-[#21275c] font-medium px-6 py-2 rounded-lg transition-all duration-300 hover:bg-[#21275c]/10 shadow-sm cursor-pointer">
+              Sign Up
+            </button>
+          </Link>
+          <button className="text-[#737373] hover:text-black transition-colors duration-300 cursor-pointer">
+            <HiOutlineGlobeAlt size={26} />
+          </button>
+        </div>
 
         {/* Mobile Menu Button */}
         <button
@@ -82,9 +91,25 @@ const Navbar = () => {
               </Link>
             </li>
           ))}
+          <li className="flex items-center flex-col gap-4">
+            <Link
+              href="/login"
+              onClick={() => setMenuOpen(false)}
+              className="text-[#737373] font-medium hover:text-black transition-colors duration-300"
+            >
+              Login
+            </Link>
+            <Link
+              href="/login"
+              onClick={() => setMenuOpen(false)}
+              className="text-[#737373] font-medium hover:text-black transition-colors duration-300"
+            >
+              Sign Up
+            </Link>
+          </li>
           <li>
-            <button className="flex items-center text-[#737373] font-medium hover:text-black transition-colors duration-300">
-              <FaLanguage size={24} />
+            <button className="text-[#737373] font-medium hover:text-black transition-colors duration-300 cursor-pointer">
+              <HiOutlineGlobeAlt size={24} />
             </button>
           </li>
         </ul>

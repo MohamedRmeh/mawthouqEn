@@ -7,8 +7,8 @@ const Hero = () => {
     <div
       className="
     relative 
-    px-5 sm:px-10 md:px-20 2xl:px-48
-    py-6 lg:py-16 
+    px-5 sm:px-10 md:px-20 2xl:px-26
+    py-6 lg:py-12 
     overflow-hidden 
     bg-[#f5f7fa]   // لون الخلفية في الشاشات الصغيرة
     lg:bg-white    // خلفية بيضاء للشاشات الكبيرة في حال فشل تحميل الصورة مثلاً

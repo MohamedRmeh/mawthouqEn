@@ -2,7 +2,7 @@ import React from "react";
 
 const Boost = () => {
   return (
-    <section className="bg-gradient-to-r from-[#2a2f65] via-[#2f396f] to-[#3c4b8b] rounded-lg my-10 mx-auto w-[95%] md:w-[85%] py-5 px-5 sm:px-8 mb-28">
+    <section className="bg-gradient-to-r from-[#2a2f65] via-[#2f396f] to-[#3c4b8b] rounded-lg my-10 mx-auto w-[95%] md:w-[86%] py-5 px-5 sm:px-8 mb-28">
       <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
         {/* Left Content */}
         <div className="text-white space-y-4 lg:space-y-5">

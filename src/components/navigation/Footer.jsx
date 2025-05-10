@@ -38,7 +38,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link href="/about" className="hover:underline">
-                  Catalog
+                  Marketplace
                 </Link>
               </li>
               <li>
@@ -48,17 +48,8 @@ const Footer = () => {
               </li>
               <li>
                 <Link href="/pricing" className="hover:underline">
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:underline">
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link href="/blog" className="hover:underline">
-                  Support
+                  Help & Support
+
                 </Link>
               </li>
             </ul>
@@ -68,39 +59,20 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">Our Services</h3>
             <ul className="space-y-2 text-sm text-gray-200">
-              <li>
-                <Link
-                  href="/services/press-release"
-                  className="hover:underline"
-                >
-                  Press Release Distribution
-                </Link>
+              <li className="hover:text-gray-100 transition-colors duration-200">
+                Press Release Distribution
               </li>
-              <li>
-                <Link
-                  href="/services/media-coverage"
-                  className="hover:underline"
-                >
-                  Guaranteed Media Coverage
-                </Link>
+              <li className="hover:text-gray-100 transition-colors duration-200">
+                Guaranteed Media Coverage
               </li>
-              <li>
-                <Link
-                  href="/services/content-writing"
-                  className="hover:underline"
-                >
-                  Content Writing
-                </Link>
+              <li className="hover:text-gray-100 transition-colors duration-200">
+                Professional Content Writing
               </li>
-              <li>
-                <Link href="/services/translation" className="hover:underline">
-                  Translation Services
-                </Link>
+              <li className="hover:text-gray-100 transition-colors duration-200">
+                Multilingual Translation Services
               </li>
-              <li>
-                <Link href="/services/seo" className="hover:underline">
-                  SEO Optimization
-                </Link>
+              <li className="hover:text-gray-100 transition-colors duration-200">
+                SEO & Online Visibility Boost
               </li>
             </ul>
           </div>
