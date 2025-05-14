@@ -1,8 +1,7 @@
 "use client";
 import React, { useState, useRef } from "react";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
-import { useTranslations } from "next-intl";
-import useLanguage from "../useLanguage";
+import { useTranslations, useLocale } from "next-intl";
 
 const faqs = [
   {
@@ -31,7 +30,7 @@ const QA = () => {
   const [openIndex, setOpenIndex] = useState(null);
   const contentRefs = useRef([]);
   const t = useTranslations("QA");
-  const lang = useLanguage() === "/en" ? true : false;
+  const lang = useLocale() === "en" ? true : false;
 
   const toggleQuestion = (index) => {
     setOpenIndex(index === openIndex ? null : index);

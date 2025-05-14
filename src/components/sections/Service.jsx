@@ -1,13 +1,11 @@
-"use client";
 import React from "react";
 import Image from "next/image";
 import { FaCheck } from "react-icons/fa";
-import { useTranslations } from "next-intl";
-import useLanguage from "../useLanguage";
+import { useTranslations, useLocale } from "next-intl";
 
 const Service = () => {
   const t = useTranslations("Service");
-  const lang = useLanguage() === "/en" ? true : false;
+  const lang = useLocale() === "en" ? true : false;
   return (
     <section
       className="

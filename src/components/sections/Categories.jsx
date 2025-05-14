@@ -1,13 +1,11 @@
-"use client"
 import React from "react";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
-import useLanguage from "../useLanguage";
+import { useTranslations, useLocale } from "next-intl";
 
 
 const Categories = () => {
   const t = useTranslations("Categories");
-    const lang = useLanguage() === "/en" ? true : false;
+  const lang = useLocale() === "en" ? true : false;
 
   const categories = [
     {

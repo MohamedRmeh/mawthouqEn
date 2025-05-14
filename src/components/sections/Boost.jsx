@@ -1,11 +1,9 @@
-"use client";
 import React from "react";
-import { useTranslations } from "next-intl";
-import useLanguage from "../useLanguage";
+import { useTranslations, useLocale } from "next-intl";
 
 const Boost = () => {
   const t = useTranslations("Boost");
-  const lang = useLanguage() === "/en" ? true : false;
+  const lang = useLocale() === "en" ? true : false;
 
   return (
     <section className="bg-gradient-to-r from-[#2a2f65] via-[#2f396f] to-[#3c4b8b] rounded-lg my-10 mx-auto w-[95%] md:w-[86%] py-5 px-5 sm:px-8 mb-28">

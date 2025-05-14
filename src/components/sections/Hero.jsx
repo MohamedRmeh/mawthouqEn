@@ -1,14 +1,11 @@
-"use client";
 import React from "react";
 import Link from "next/link";
 import { FaTrophy, FaStar, FaStarHalfAlt } from "react-icons/fa";
-import { useTranslations } from "next-intl";
-import useLanguage from "../useLanguage";
+import { useTranslations, useLocale } from "next-intl";
 
 const Hero = () => {
   const t = useTranslations("Hero");
-  const lang = useLanguage() === "/en" ? true : false;
-  console.log(lang);
+  const lang = useLocale() === "en" ? true : false;
 
   return (
     <div

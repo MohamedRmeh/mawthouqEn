@@ -1,16 +1,18 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { HiMenu, HiX } from "react-icons/hi";
 import { HiOutlineGlobeAlt } from "react-icons/hi";
 import LoginModal from "../auth/LoginModal";
 import SignupModal from "../auth/SignupModal";
 import { useRouter, usePathname } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 const Navbar = () => {
   const t = useTranslations("Navbar");
+const locale = useLocale();
+console.log(locale)
   const navLinks = [
     { href: "/", label: t("Home") },
     { href: "/marketplace", label: t("Marketplace") },
@@ -56,6 +58,7 @@ const Navbar = () => {
               <li key={link.label}>
                 <Link
                   href={link.href}
+                  locale={locale}
                   className="relative text-[#737373] text-[17px] font-medium transition-colors duration-300 hover:text-black before:content-[''] before:absolute before:left-0 before:-bottom-1 before:h-[2px] before:w-0 before:bg-blue-500 before:transition-all before:duration-300 hover:before:w-full"
                 >
                   {link.label}
