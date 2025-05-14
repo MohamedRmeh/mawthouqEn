@@ -1,39 +1,37 @@
 "use client";
 import React, { useState, useRef } from "react";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
+import { useTranslations } from "next-intl";
+import useLanguage from "../useLanguage";
 
 const faqs = [
   {
-    question: "What is your article distribution service?",
-    answer:
-      "We help you publish articles across high-authority news websites to boost your brand visibility, SEO, and online credibility.",
+    questionKey: "faq1_question",
+    answerKey: "faq1_answer",
   },
   {
-    question: "Can I choose which websites my article gets published on?",
-    answer:
-      "Yes, you can browse our list of partner websites, view metrics like domain authority, audience, and pricing, then select where you'd like to publish.",
+    questionKey: "faq2_question",
+    answerKey: "faq2_answer",
   },
   {
-    question:
-      "Do you offer content writing, or do I need to provide the article?",
-    answer:
-      "You can either provide your own article or request professional content writing from our team for an additional fee.",
+    questionKey: "faq3_question",
+    answerKey: "faq3_answer",
   },
   {
-    question: "How long does it take for the article to be published?",
-    answer:
-      "Publishing time varies by website but typically takes between 1 to 5 business days after approval.",
+    questionKey: "faq4_question",
+    answerKey: "faq4_answer",
   },
   {
-    question: "How do I track the status of my publication request?",
-    answer:
-      "You can track your request in your dashboard under the 'My Orders' section. We'll also send you email updates at each step.",
+    questionKey: "faq5_question",
+    answerKey: "faq5_answer",
   },
 ];
 
 const QA = () => {
   const [openIndex, setOpenIndex] = useState(null);
   const contentRefs = useRef([]);
+  const t = useTranslations("QA");
+  const lang = useLanguage() === "/en" ? true : false;
 
   const toggleQuestion = (index) => {
     setOpenIndex(index === openIndex ? null : index);
@@ -44,17 +42,14 @@ const QA = () => {
       <div className="w-full grid grid-cols-1 md:grid-cols-5 gap-10">
         <div
           className="md:col-span-2 flex flex-col justify-center"
-          data-aos="fade-right"
+          data-aos={lang ? "fade-right" : "fade-left"}
         >
           <h1 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4 relative inline-block w-fit">
-            <span className="relative z-10 text-[#21275c]">
-              Frequently Asked Questions
-            </span>
+            <span className="relative z-10 text-[#21275c]">{t("title")}</span>
             <span className="absolute left-0 bottom-1 h-2 w-full bg-gradient-to-r from-[#035E89] via-[#0494C4] to-[#21275C] opacity-40 rounded-lg -z-10"></span>
           </h1>
           <p className="text-lg md:text-xl text-gray-500 leading-relaxed">
-            Find quick answers to common questions about our article publishing
-            services. Need more help? Contact our support team.
+            {t("description")}
           </p>
         </div>
 
@@ -71,7 +66,7 @@ const QA = () => {
                 onClick={() => toggleQuestion(index)}
               >
                 <h2 className="text-lg font-semibold text-slate-700 select-none">
-                  {faq.question}
+                  {t(faq.questionKey)}
                 </h2>
                 {openIndex === index ? (
                   <AiOutlineMinus className="w-6 h-6 text-[#035E89]" />
@@ -90,7 +85,7 @@ const QA = () => {
                 }}
               >
                 <div className="mt-1.5 text-gray-600 text-base">
-                  {faq.answer}
+                  {t(faq.answerKey)}
                 </div>
               </div>
             </div>

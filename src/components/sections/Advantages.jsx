@@ -7,41 +7,44 @@ import {
   FaChartLine,
   FaHeadset,
 } from "react-icons/fa";
-
-const advantagesData = [
-  {
-    icon: <FaRocket size={30} className="text-[#21275c]" />,
-    title: "Fast Delivery",
-    text: "We ensure quick and reliable news distribution.",
-  },
-  {
-    icon: <FaShieldAlt size={30} className="text-[#21275c]" />,
-    title: "Secure & Trusted",
-    text: "Your stories are in safe hands with us.",
-  },
-  {
-    icon: <FaUsers size={30} className="text-[#21275c]" />,
-    title: "Wide Audience",
-    text: "Reach thousands of active readers worldwide.",
-  },
-  {
-    icon: <FaGlobe size={30} className="text-[#21275c]" />,
-    title: "Global Reach",
-    text: "Publish in multiple countries and languages.",
-  },
-  {
-    icon: <FaChartLine size={30} className="text-[#21275c]" />,
-    title: "Proven Results",
-    text: "Backed by data and real success stories.",
-  },
-  {
-    icon: <FaHeadset size={30} className="text-[#21275c]" />,
-    title: "24/7 Support",
-    text: "Always here to help with your needs.",
-  },
-];
+import { useTranslations } from "next-intl";
 
 const Advantages = () => {
+  const t = useTranslations("Advantages");
+
+  const advantagesData = [
+    {
+      icon: <FaRocket size={30} className="text-[#21275c]" />,
+      title: t("items.0.title"),
+      text: t("items.0.text"),
+    },
+    {
+      icon: <FaShieldAlt size={30} className="text-[#21275c]" />,
+      title: t("items.1.title"),
+      text: t("items.1.text"),
+    },
+    {
+      icon: <FaUsers size={30} className="text-[#21275c]" />,
+      title: t("items.2.title"),
+      text: t("items.2.text"),
+    },
+    {
+      icon: <FaGlobe size={30} className="text-[#21275c]" />,
+      title: t("items.3.title"),
+      text: t("items.3.text"),
+    },
+    {
+      icon: <FaChartLine size={30} className="text-[#21275c]" />,
+      title: t("items.4.title"),
+      text: t("items.4.text"),
+    },
+    {
+      icon: <FaHeadset size={30} className="text-[#21275c]" />,
+      title: t("items.5.title"),
+      text: t("items.5.text"),
+    },
+  ];
+
   return (
     <section className="mb-26 py-12 px-4 mt-8">
       <div>
@@ -50,11 +53,10 @@ const Advantages = () => {
           className="flex flex-col gap-1 md:gap-4 justify-center items-center text-center mb-14"
         >
           <h1 className="text-2xl md:text-5xl font-semibold text-[#21275c]">
-            Why use Mawthouq Post?
+            {t("title")}
           </h1>
           <p className="md:text-xl text-slate-600 max-w-2xl">
-            With years of experience and over 10,000 published news stories, you
-            can expect the best results publishing with us.
+            {t("description")}
           </p>
         </div>
 

@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Link from "next/link";
 import {
@@ -7,49 +8,57 @@ import {
   FaInstagram,
   FaYoutube,
 } from "react-icons/fa";
+import { useTranslations } from "next-intl";
+import useLanguage from "../useLanguage";
 
 const Footer = () => {
+  const t = useTranslations("Footer");
+  const lang = useLanguage() === "/en" ? true : false;
+
   return (
     <footer className="bg-[#21275c] text-white py-12">
       <div className="container mx-auto px-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-x-10 gap-y-8 text-center sm:text-left">
+        <div
+          className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-x-10 gap-y-8 text-center ${
+            lang ? "sm:text-left" : "sm:text-right"
+          } `}
+        >
           {/* وصف الموقع */}
           <div className="space-y-4 lg:col-span-2">
-            <h2 className="text-xl font-bold">Mawthouq Post</h2>
+            <h2 className="text-xl font-bold">{t("siteName")}</h2>
             <p className="text-sm text-gray-300 leading-relaxed lg:max-w-[80%]">
-              Mawthouq Post is your trusted partner for press release
-              distribution. We help businesses amplify their message across top
-              news platforms, build credibility, and drive real media coverage.
+              {t("description")}
             </p>
             <p className="text-sm text-gray-400">
-              Email: support@mawthouqpost.com
+              {t("email")}: support@mawthouqpost.com
             </p>
-            <p className="text-sm text-gray-400">Phone: +1 800 123 4567</p>
+            <p className="text-sm text-gray-400">
+              {t("phone")}: +1 800 123 4567
+            </p>
           </div>
 
           {/* روابط سريعة */}
-          <div className="space-y-4 ">
-            <h3 className="text-lg font-semibold">Quick Links</h3>
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">{t("quickLinks")}</h3>
             <ul className="space-y-2 text-sm text-gray-200">
               <li>
                 <Link href="/" className="hover:underline">
-                  Home
+                  {t("home")}
                 </Link>
               </li>
               <li>
                 <Link href="/about" className="hover:underline">
-                  Marketplace
+                  {t("marketplace")}
                 </Link>
               </li>
               <li>
                 <Link href="/services" className="hover:underline">
-                  About Us
+                  {t("aboutUs")}
                 </Link>
               </li>
               <li>
                 <Link href="/pricing" className="hover:underline">
-                  Help & Support
-
+                  {t("helpSupport")}
                 </Link>
               </li>
             </ul>
@@ -57,32 +66,30 @@ const Footer = () => {
 
           {/* خدماتنا */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Our Services</h3>
+            <h3 className="text-lg font-semibold">{t("ourServices")}</h3>
             <ul className="space-y-2 text-sm text-gray-200">
               <li className="hover:text-gray-100 transition-colors duration-200">
-                Press Release Distribution
+                {t("pressReleaseDistribution")}
               </li>
               <li className="hover:text-gray-100 transition-colors duration-200">
-                Guaranteed Media Coverage
+                {t("guaranteedMediaCoverage")}
               </li>
               <li className="hover:text-gray-100 transition-colors duration-200">
-                Professional Content Writing
+                {t("professionalContentWriting")}
               </li>
               <li className="hover:text-gray-100 transition-colors duration-200">
-                Multilingual Translation Services
+                {t("multilingualTranslation")}
               </li>
               <li className="hover:text-gray-100 transition-colors duration-200">
-                SEO & Online Visibility Boost
+                {t("seoOnlineVisibility")}
               </li>
             </ul>
           </div>
 
           {/* تابعنا */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Follow Us</h3>
-            <p className="text-sm text-gray-300">
-              Stay connected with us on social media:
-            </p>
+            <h3 className="text-lg font-semibold">{t("followUs")}</h3>
+            <p className="text-sm text-gray-300">{t("stayConnected")}</p>
             <div className="flex gap-4 text-white text-lg justify-center sm:justify-start">
               <a
                 href="https://facebook.com"
@@ -130,7 +137,7 @@ const Footer = () => {
 
         {/* الحقوق */}
         <div className="border-t border-gray-700 mt-10 pt-6 text-center text-sm text-gray-400">
-          © {new Date().getFullYear()} Mawthouq Post. All rights reserved.
+          © {new Date().getFullYear()} Mawthouq Post. {t("allRightsReserved")}
         </div>
       </div>
     </footer>
