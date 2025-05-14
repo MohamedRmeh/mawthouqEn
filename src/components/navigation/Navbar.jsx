@@ -11,8 +11,8 @@ import { Link } from "@/i18n/navigation";
 
 const Navbar = () => {
   const t = useTranslations("Navbar");
-const locale = useLocale();
-console.log(locale)
+  const locale = useLocale();
+  console.log(locale);
   const navLinks = [
     { href: "/", label: t("Home") },
     { href: "/marketplace", label: t("Marketplace") },
