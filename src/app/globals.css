@@ -8,3 +8,11 @@ html[lang="ar"] body {
   font-family: var(--font-arabic), sans-serif;
 }
 
+.scroll-hidden {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE 10+ */
+}
+
+.scroll-hidden::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
