@@ -48,7 +48,7 @@ declare const messages: {
     ]
   },
   "Advantages": {
-    "title": "Why use Mawthouq Post?",
+    "title": "Why use Mawthouq Post ?",
     "description": "With years of experience and over 10,000 published news stories, you can expect the best results publishing with us.",
     "items": [
       {
@@ -187,6 +187,9 @@ declare const messages: {
     "me": "Middle East",
     "na": "North America",
     "resetFilters": "Reset Filters"
+  },
+  "Recommended": {
+    "topContent": "Recommended Similar Websites"
   }
 };
 export default messages;

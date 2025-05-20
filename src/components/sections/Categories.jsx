@@ -2,7 +2,6 @@ import React from "react";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 
-
 const Categories = () => {
   const t = useTranslations("Categories");
   const lang = useLocale() === "en" ? true : false;
@@ -45,7 +44,10 @@ const Categories = () => {
       <div className="md:px-26 px-8 mt-16 mb-20">
         <div className="w-full">
           <div className="grid md:grid-cols-2 items-center mb-24 gap-4">
-            <div data-aos={lang ? "fade-right" : "fade-left"} className="space-y-6">
+            <div
+              data-aos={lang ? "fade-right" : "fade-left"}
+              className="space-y-6"
+            >
               <span className="block w-28 h-[9px] bg-blue-600"></span>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#21275c] leading-tight">
                 {t("title")}

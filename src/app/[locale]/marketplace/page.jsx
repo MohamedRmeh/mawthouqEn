@@ -512,68 +512,69 @@ const Page = () => {
             ))}
           </div>
 
-{/* Smart Pagination */}
-<div className="mt-10 flex justify-center gap-2 flex-wrap items-center">
-  {/* Previous Button */}
-  <button
-    onClick={() => currentPage > 1 && setCurrentPage(currentPage - 1)}
-    className="px-3 py-1 rounded-full border bg-white text-[#21275c] hover:bg-slate-100 text-sm"
-    disabled={currentPage === 1}
-  >
-    ‹
-  </button>
+          {/* Smart Pagination */}
+          <div className="mt-10 flex justify-center gap-2 flex-wrap items-center">
+            {/* Previous Button */}
+            <button
+              onClick={() => currentPage > 1 && setCurrentPage(currentPage - 1)}
+              className="px-3 py-1 rounded-full border border-slate-400 bg-white text-[#21275c] hover:bg-slate-100 text-sm"
+              disabled={currentPage === 1}
+            >
+              ‹
+            </button>
 
-  {Array.from({ length: totalPages }, (_, i) => i + 1)
-    .filter((page) => {
-      if (
-        page === 1 || // Always show first
-        page === totalPages || // Always show last
-        Math.abs(page - currentPage) <= 1 // Show around current
-      ) {
-        return true;
-      }
-      if (
-        (page === currentPage - 2 && currentPage > 4) ||
-        (page === currentPage + 2 && currentPage < totalPages - 3)
-      ) {
-        return true;
-      }
-      return false;
-    })
-    .map((page, index, arr) => {
-      const prevPage = arr[index - 1];
-      if (prevPage && page - prevPage > 1) {
-        return (
-          <span key={`dots-${page}`} className="px-2 text-gray-400">
-            ...
-          </span>
-        );
-      }
-      return (
-        <button
-          key={page}
-          onClick={() => handlePageClick(page)}
-          className={`px-3 py-1 rounded-full border text-sm transition-all ${
-            page === currentPage
-              ? "bg-[#21275c] text-white font-semibold"
-              : "bg-white text-[#21275c] hover:bg-slate-100 border-slate-300"
-          }`}
-        >
-          {page}
-        </button>
-      );
-    })}
+            {Array.from({ length: totalPages }, (_, i) => i + 1)
+              .filter((page) => {
+                if (
+                  page === 1 || // Always show first
+                  page === totalPages || // Always show last
+                  Math.abs(page - currentPage) <= 1 // Show around current
+                ) {
+                  return true;
+                }
+                if (
+                  (page === currentPage - 2 && currentPage > 4) ||
+                  (page === currentPage + 2 && currentPage < totalPages - 3)
+                ) {
+                  return true;
+                }
+                return false;
+              })
+              .map((page, index, arr) => {
+                const prevPage = arr[index - 1];
+                if (prevPage && page - prevPage > 1) {
+                  return (
+                    <span key={`dots-${page}`} className="px-2 text-gray-400">
+                      ...
+                    </span>
+                  );
+                }
+                return (
+                  <button
+                    key={page}
+                    onClick={() => handlePageClick(page)}
+                    className={`px-3 py-1 rounded-full border border-slate-400 text-sm transition-all ${
+                      page === currentPage
+                        ? "bg-[#21275c] text-white font-semibold"
+                        : "bg-white text-[#21275c] hover:bg-slate-100 border-slate-300"
+                    }`}
+                  >
+                    {page}
+                  </button>
+                );
+              })}
 
-  {/* Next Button */}
-  <button
-    onClick={() => currentPage < totalPages && setCurrentPage(currentPage + 1)}
-    className="px-3 py-1 rounded-full border bg-white text-[#21275c] hover:bg-slate-100 text-sm"
-    disabled={currentPage === totalPages}
-  >
-    ›
-  </button>
-</div>
-
+            {/* Next Button */}
+            <button
+              onClick={() =>
+                currentPage < totalPages && setCurrentPage(currentPage + 1)
+              }
+              className="px-3 py-1 rounded-full border border-slate-400 bg-white text-[#21275c] hover:bg-slate-100 text-sm"
+              disabled={currentPage === totalPages}
+            >
+              ›
+            </button>
+          </div>
         </div>
       </div>
     </section>

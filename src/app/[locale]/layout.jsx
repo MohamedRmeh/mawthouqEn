@@ -17,7 +17,7 @@ const inter = Inter({
 const almarai = Almarai({
   variable: "--font-arabic",
   subsets: ["arabic"],
-  weight: ["400", "700"], // يمكنك تعديل الأوزان حسب الحاجة
+  weight: ["400", "700"],
 });
 
 export function generateStaticParams() {
