@@ -13,7 +13,6 @@ import { useRouter, usePathname } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Cookies from "js-cookie";
-import axios from "axios";
 
 const Navbar = () => {
   const t = useTranslations("Navbar");
@@ -47,22 +46,12 @@ const Navbar = () => {
     setRedictUrl(localStorage.getItem("redirect_url") || undefined);
   }, []);
 
-
-const handleLogout = async () => {
-  try {
-   const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/logout`, {}, {
-      withCredentials: true, 
-    });
-    console.log(response)
+  const handleLogout = () => {
     Cookies.remove("token");
     localStorage.removeItem("redirect_url");
     setRedictUrl(undefined);
     router.push("/");
-  } catch (error) {
-    console.error("Logout failed:", error);
-    // ممكن تضيف إشعار هنا إذا حبيت
-  }
-};
+  };
 
   return (
     <>
