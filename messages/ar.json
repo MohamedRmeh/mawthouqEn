@@ -241,8 +241,15 @@
     "platform_commission": "عمولة المنصة",
     "total": "المجموع الكلي",
     "proceed_to_checkout": "المتابعة إلى الدفع",
-        "lastType": "انشر مقالاتك ووسع جمهورك على منصة موثوقة.",
-            "lang": "اللغة",
-            "website_category": "تصنيف الموقع"
+    "lastType": "انشر مقالاتك ووسع جمهورك على منصة موثوقة.",
+    "lang": "اللغة",
+    "website_category": "تصنيف الموقع"
+  },
+  "checkoutModal": {
+    "confirm_your_checkout": "أكد عملية الدفع",
+    "notices_for_publisher": "ملاحظات للناشر",
+    "upload_file": "رفع ملف",
+    "processing": "جار المعالجة...",
+    "continue_to_payment": "المتابعة إلى الدفع"
   }
 }

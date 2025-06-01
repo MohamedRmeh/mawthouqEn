@@ -3,7 +3,7 @@
 
 declare const messages: {
   "LocaleLayout": {
-    "title": "Mawthouq Post",
+    "title": "Mawthoqpost",
     "description": "Mawthouq is a bilingual guest post publishing platform..."
   },
   "Navbar": {
@@ -50,7 +50,7 @@ declare const messages: {
     ]
   },
   "Advantages": {
-    "title": "Why use Mawthouq Post ?",
+    "title": "Why use Mawthoqpost ?",
     "description": "With years of experience and over 10,000 published news stories, you can expect the best results publishing with us.",
     "items": [
       {
@@ -99,8 +99,8 @@ declare const messages: {
     "faq5_answer": "You can track your request in your dashboard under the 'My Orders' section. We'll also send you email updates at each step."
   },
   "Footer": {
-    "siteName": "Mawthouq Post",
-    "description": "Mawthouq Post is your trusted partner for press release distribution. We help businesses amplify their message across top news platforms, build credibility, and drive real media coverage.",
+    "siteName": "Mawthoqpost",
+    "description": "Mawthoqpost is your trusted partner for press release distribution. We help businesses amplify their message across top news platforms, build credibility, and drive real media coverage.",
     "email": "Email",
     "phone": "Phone",
     "quickLinks": "Quick Links",
@@ -160,7 +160,7 @@ declare const messages: {
   },
   "MarketPlace": {
     "topContent": "Content Marketing Platform",
-    "midContent": "Mawthouq Post is a smarter way to do content marketing. Need help choosing a publication? Request Media Planning services from us.",
+    "midContent": "Mawthoqpost is a smarter way to do content marketing. Need help choosing a publication? Request Media Planning services from us.",
     "search": "Search",
     "searchPlaceholder": "Search by name or URL",
     "language": "Language",
@@ -248,6 +248,13 @@ declare const messages: {
     "lastType": "Publish your articles and expand your audience on a trusted platform.",
     "lang": "Language",
     "website_category": "Website Category"
+  },
+  "checkoutModal": {
+    "confirm_your_checkout": "Confirm Your Checkout",
+    "notices_for_publisher": "Notices for publisher",
+    "upload_file": "Upload File",
+    "processing": "Processing",
+    "continue_to_payment": "Continue to Payment"
   }
 };
 export default messages;

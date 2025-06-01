@@ -202,9 +202,6 @@ const SupportPage = () => {
               >
                 <div className="text-3xl mb-4">{item.icon}</div>
                 <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                <a href={item.link} className="text-[#475569] hover:underline">
-                  {t("getInTouch")}
-                </a>
               </motion.div>
             ))}
           </div>

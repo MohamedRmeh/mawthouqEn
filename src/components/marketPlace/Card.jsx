@@ -60,7 +60,7 @@ const Card = ({ websites, loading, onPageChange }) => {
             >
               <Link locale={locale} href={`/marketplace/${site.id}`}>
                 <img
-                  src={site?.image || "/images/testImg.jpeg"} 
+                  src={site?.image || "/images/testImg.jpeg"}
                   alt={site.name}
                   className="w-full h-40 object-cover border-b border-slate-300 cursor-pointer"
                 />
@@ -83,7 +83,7 @@ const Card = ({ websites, loading, onPageChange }) => {
 
                 <div className="mt-3 flex items-center justify-between text-sm">
                   <span className="font-bold text-[#21275c] line-clamp-1">
-                    {site.price || "$0"}
+                    {site.price ? `$${(site.price * 1.2).toFixed(2)}` : "$0"}
                   </span>
                   <span className="text-gray-500 line-clamp-1">
                     {site.views || "0"} views

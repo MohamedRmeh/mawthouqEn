@@ -2,12 +2,12 @@
 import Image from "next/image";
 import { FaCcPaypal, FaCcVisa, FaStripe } from "react-icons/fa";
 import React, { useState } from "react";
-import CheckoutModal from "./CheckoutModal"; 
+import CheckoutModal from "./CheckoutModal";
 import Cookies from "js-cookie";
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
 
 const CheckoutSection = ({ websiteData }) => {
-    const t = useTranslations("checkout");
+  const t = useTranslations("checkout");
 
   const basePrice = parseFloat(websiteData?.price || 0);
   const commissionRate = 0.2;
@@ -27,9 +27,9 @@ const CheckoutSection = ({ websiteData }) => {
     return acc + (extra ? parseFloat(extra.price) : 0);
   }, 0);
 
-  const subTotal = basePrice + extrasTotal;
+  const subTotal = basePrice;
   const commission = subTotal * commissionRate;
-  const totalWithCommission = subTotal + commission;
+  const totalWithCommission = subTotal + commission + extrasTotal;
 
   const handleCheckoutClick = () => {
     const token = Cookies.get("token"); // أو اسم الكوكي اللي تستخدمه
@@ -60,12 +60,14 @@ const CheckoutSection = ({ websiteData }) => {
       )}
 
       <div className="rounded-xl h-fit p-4 border border-gray-200">
-        <h2 className="text-2xl font-semibold text-[#21275c] mb-6">{t("checkout")}</h2>
+        <h2 className="text-2xl font-semibold text-[#21275c] mb-6">
+          {t("checkout")}
+        </h2>
 
         <div className="mb-6 space-y-4">
           <div className="flex justify-between text-gray-800 font-medium">
             <span>{t("base_price")}</span>
-            <span>${basePrice.toFixed(2)}</span>
+            <span>${(basePrice * 1.2).toFixed(2)}</span>
           </div>
 
           {extras.length > 0 && (
@@ -94,14 +96,6 @@ const CheckoutSection = ({ websiteData }) => {
         </div>
 
         <div className="space-y-2 pt-4 mt-6 border-t border-gray-200 text-gray-800">
-          <div className="flex justify-between">
-            <span>{t("Subtotal")}</span>
-            <span>${subTotal.toFixed(2)}</span>
-          </div>
-          <div className="flex justify-between">
-            <span>{t("platform_commission")} (20%)</span>
-            <span>${commission.toFixed(2)}</span>
-          </div>
           <div className="flex justify-between font-semibold text-lg">
             <span>{t("total")}</span>
             <span>${totalWithCommission.toFixed(2)}</span>
@@ -153,10 +147,22 @@ const CheckoutSection = ({ websiteData }) => {
       {/* Tailwind animation for fadeInOut */}
       <style jsx>{`
         @keyframes fadeInOut {
-          0% { opacity: 0; transform: translateY(-10px); }
-          10% { opacity: 1; transform: translateY(0); }
-          90% { opacity: 1; transform: translateY(0); }
-          100% { opacity: 0; transform: translateY(-10px); }
+          0% {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          10% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+          90% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+          100% {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
         }
         .animate-fadeInOut {
           animation: fadeInOut 4s ease forwards;

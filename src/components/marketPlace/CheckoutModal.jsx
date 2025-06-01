@@ -2,14 +2,15 @@
 import React, { useRef, useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { useTranslations, useLocale } from "next-intl";
 
 const CheckoutModal = ({ onClose, selectedExtras, id }) => {
+  const t = useTranslations("checkoutModal");
+
   const modalRef = useRef();
   const [articleText, setArticleText] = useState("");
   const [articleFile, setArticleFile] = useState(null);
   const [loading, setLoading] = useState(false);
-
-
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -88,12 +89,14 @@ const CheckoutModal = ({ onClose, selectedExtras, id }) => {
         </button>
 
         <h2 className="text-xl sm:text-2xl font-bold mb-6 text-center text-[#21275c]">
-          Confirm Your Checkout
+          {t("confirm_your_checkout")}
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-4 text-gray-700">
           <div>
-            <label className="block mb-1 font-medium">Article Text</label>
+            <label className="block mb-1 font-medium">
+              {t("notices_for_publisher")}
+            </label>
             <textarea
               value={articleText}
               onChange={(e) => setArticleText(e.target.value)}
@@ -103,11 +106,12 @@ const CheckoutModal = ({ onClose, selectedExtras, id }) => {
           </div>
 
           <div>
-            <label className="block mb-1 font-medium">Upload File</label>
+            <label className="block mb-1 font-medium">{t("upload_file")}</label>
             <input
               type="file"
               onChange={(e) => setArticleFile(e.target.files[0])}
               className="w-full border border-gray-300 rounded-md p-2 cursor-pointer"
+              required
             />
           </div>
 
@@ -116,7 +120,7 @@ const CheckoutModal = ({ onClose, selectedExtras, id }) => {
             disabled={loading}
             className="w-full bg-[#21275c] text-white py-3 rounded-xl font-semibold hover:bg-[#1b1f4a] transition cursor-pointer"
           >
-            {loading ? "Processing..." : "Continue to Payment"}
+            {loading ? t("processing") : t("continue_to_payment")}
           </button>
         </form>
       </div>

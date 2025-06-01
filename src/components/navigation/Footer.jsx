@@ -28,7 +28,7 @@ const Footer = () => {
               {t("description")}
             </p>
             <p className="text-sm text-gray-400">
-              {t("email")}: support@mawthouqpost.com
+              {t("email")}: support@mawthoqpost.com
             </p>
           </div>
 
@@ -42,17 +42,17 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:underline">
+                <Link href="/marketplace" className="hover:underline">
                   {t("marketplace")}
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="hover:underline">
+                <Link href="/about" className="hover:underline">
                   {t("aboutUs")}
                 </Link>
               </li>
               <li>
-                <Link href="/pricing" className="hover:underline">
+                <Link href="/support" className="hover:underline">
                   {t("helpSupport")}
                 </Link>
               </li>
@@ -132,7 +132,7 @@ const Footer = () => {
 
         {/* الحقوق */}
         <div className="border-t border-gray-700 mt-10 pt-6 text-center text-sm text-gray-400">
-          © {new Date().getFullYear()} Mawthouq Post. {t("allRightsReserved")}
+          © {new Date().getFullYear()} Mawthoqpost. {t("allRightsReserved")}
         </div>
       </div>
     </footer>

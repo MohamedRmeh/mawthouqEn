@@ -55,11 +55,11 @@ const Recommended = ({ id }) => {
             platforms.map((site) => (
               <div
                 key={site.id}
-                className="bg-white rounded-2xl overflow-hidden shadow-md transition-all duration-300 border border-slate-200 w-full sm:w-fit"
+                className="bg-white rounded-2xl overflow-hidden shadow-md transition-all duration-300 border border-slate-200 w-full sm:w-[300px]"
               >
                 <Link href={`/marketplace/${site.id}`}>
                   <img
-                    src={site.img || "/images/testImg.jpeg"}
+                    src={site.image || "/images/testImg.jpeg"}
                     alt={site.name}
                     className="w-full h-44 object-cover cursor-pointer border-b border-slate-200"
                   />
@@ -78,7 +78,7 @@ const Recommended = ({ id }) => {
                   </a>
                   <div className="mt-4 flex items-center justify-between text-sm">
                     <span className="font-bold text-[#21275c]">
-                      ${site.price}
+                      ${site?.price * 1.2}
                     </span>
                     <span className="text-gray-500">{site.views} views</span>
                   </div>
