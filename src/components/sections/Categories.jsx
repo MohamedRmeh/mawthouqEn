@@ -2,38 +2,41 @@ import React from "react";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 
+import {
+  FaRocket,
+  FaHospitalAlt,
+  FaLightbulb,
+  FaChartBar,
+  FaFileAlt,
+} from "react-icons/fa";
+
 const Categories = () => {
   const t = useTranslations("Categories");
-  const lang = useLocale() === "en" ? true : false;
+  const lang = useLocale() === "en";
 
   const categories = [
     {
-      image:
-        "https://www.businesswire.com/_next/image?url=https%3A%2F%2Fd1k42caodqw8lr.cloudfront.net%2Fsuccess_rocketship_9ba5cb71b9.webp&w=384&q=75",
+      icon: <FaRocket className="text-blue-600 md:text-5xl text-3xl" />,
       name: t("items.0"),
       href: "/",
     },
     {
-      image:
-        "https://www.businesswire.com/_next/image?url=https%3A%2F%2Fd1k42caodqw8lr.cloudfront.net%2Fhealth_buildings_c1f015bcc3.webp&w=384&q=75",
+      icon: <FaHospitalAlt className="text-blue-600 md:text-5xl text-3xl" />,
       name: t("items.1"),
       href: "/",
     },
     {
-      image:
-        "https://www.businesswire.com/_next/image?url=https%3A%2F%2Fd1k42caodqw8lr.cloudfront.net%2Fdesign_lightbulbs_Chat_Phone_9122827af3.webp&w=384&q=75",
+      icon: <FaLightbulb className="text-blue-600 md:text-5xl text-3xl" />,
       name: t("items.2"),
       href: "/",
     },
     {
-      image:
-        "https://www.businesswire.com/_next/image?url=https%3A%2F%2Fd1k42caodqw8lr.cloudfront.net%2Fdata_chart_9b8d168119.webp&w=384&q=75",
+      icon: <FaChartBar className="text-blue-600 md:text-5xl text-3xl" />,
       name: t("items.3"),
       href: "/",
     },
     {
-      image:
-        "https://www.businesswire.com/_next/image?url=https%3A%2F%2Fd1k42caodqw8lr.cloudfront.net%2Fcommunication_writing_Document_d0eb442695.webp&w=384&q=75",
+      icon: <FaFileAlt className="text-blue-600 md:text-5xl text-3xl" />,
       name: t("items.4"),
       href: "/",
     },
@@ -68,12 +71,8 @@ const Categories = () => {
           >
             {categories.map((category, index) => (
               <Link href={category.href} key={index}>
-                <div className="flex flex-col items-center text-center space-y-4 transition-transform duration-300">
-                  <img
-                    src={category.image}
-                    alt={category.name}
-                    className="md:w-28 md:h-28 w-20 h-20 object-contain"
-                  />
+                <div className="flex flex-col items-center text-center space-y-4 transition-transform duration-300 hover:scale-105">
+                  {category.icon}
                   <p className="md:text-xl font-medium text-slate-800">
                     {category.name}
                   </p>

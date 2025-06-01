@@ -2,17 +2,16 @@
 import Image from "next/image";
 import { FaCcPaypal, FaCcVisa, FaStripe } from "react-icons/fa";
 import React, { useState } from "react";
+import CheckoutModal from "./CheckoutModal"; 
+import Cookies from "js-cookie";
 
-const CheckoutSection = () => {
-  const basePrice = 250;
-  const extras = [
-    { id: 1, label: "Extra Fast Publishing (2 days)", price: 50 },
-    { id: 2, label: "Featured Placement", price: 80 },
-    { id: 3, label: "Social Media Promotion", price: 40 },
-    { id: 4, label: "Featured Placement", price: 80 },
-  ];
-
+const CheckoutSection = ({ websiteData }) => {
+  const basePrice = parseFloat(websiteData.price || 0);
+  const commissionRate = 0.2;
+  const extras = websiteData.extra_features || [];
   const [selectedExtras, setSelectedExtras] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
 
   const handleToggle = (id) => {
     setSelectedExtras((prev) =>
@@ -20,80 +19,146 @@ const CheckoutSection = () => {
     );
   };
 
-  const totalPrice =
-    basePrice +
-    selectedExtras.reduce(
-      (acc, id) => acc + extras.find((extra) => extra.id === id).price,
-      0
-    );
+  const extrasTotal = selectedExtras.reduce((acc, id) => {
+    const extra = extras.find((e) => e.id === id);
+    return acc + (extra ? parseFloat(extra.price) : 0);
+  }, 0);
+
+  const subTotal = basePrice + extrasTotal;
+  const commission = subTotal * commissionRate;
+  const totalWithCommission = subTotal + commission;
+
+  const handleCheckoutClick = () => {
+    const token = Cookies.get("token"); // أو اسم الكوكي اللي تستخدمه
+    if (!token) {
+      setAlertMessage("⚠️ You must be logged in to proceed to checkout.");
+      // تختفي الرسالة بعد 4 ثواني
+      setTimeout(() => setAlertMessage(""), 4000);
+      return;
+    }
+    setShowModal(true);
+  };
+
   return (
-    <div className="mt-10">
-      <div className="rounded-xl h-fit bg-[#f5f7fa p-4 border border-gray-200">
-        <h2 className="text-2xl font-semibold text-[#21275c] mb-6 ">
-          Checkout
-        </h2>
+    <div className="mt-10 relative">
+      {/* Alert Message */}
+      {alertMessage && (
+        <div className="fixed top-5 right-5 bg-red-500 text-white px-5 py-3 rounded-lg shadow-lg z-50 animate-fadeInOut">
+          {alertMessage}
+        </div>
+      )}
+
+      {showModal && (
+        <CheckoutModal
+          id={websiteData.id}
+          selectedExtras={extras.filter((e) => selectedExtras.includes(e.id))}
+          onClose={() => setShowModal(false)}
+        />
+      )}
+
+      <div className="rounded-xl h-fit p-4 border border-gray-200">
+        <h2 className="text-2xl font-semibold text-[#21275c] mb-6">Checkout</h2>
 
         <div className="mb-6 space-y-4">
           <div className="flex justify-between text-gray-800 font-medium">
             <span>Base Price</span>
-            <span>${basePrice}</span>
+            <span>${basePrice.toFixed(2)}</span>
           </div>
 
-          <div className="flex flex-col gap-3">
-            {extras.map((extra) => (
-              <label
-                key={extra.id}
-                className="flex justify-between items-center text-sm text-gray-700"
-              >
-                <div className="flex items-center gap-3">
-                  <input
-                    type="checkbox"
-                    checked={selectedExtras.includes(extra.id)}
-                    onChange={() => handleToggle(extra.id)}
-                    className="accent-blue-600 w-5 h-5"
-                  />
-                  <span>{extra.label}</span>
-                </div>
-                <span className="text-gray-600">${extra.price}</span>
-              </label>
-            ))}
+          {extras.length > 0 && (
+            <div className="flex flex-col gap-3">
+              {extras.map((extra) => (
+                <label
+                  key={extra.id}
+                  className="flex justify-between items-center text-sm text-gray-700"
+                >
+                  <div className="flex items-center gap-3">
+                    <input
+                      type="checkbox"
+                      checked={selectedExtras.includes(extra.id)}
+                      onChange={() => handleToggle(extra.id)}
+                      className="accent-blue-600 w-5 h-5"
+                    />
+                    <span>{extra.title}</span>
+                  </div>
+                  <span className="text-gray-600">
+                    ${parseFloat(extra.price).toFixed(2)}
+                  </span>
+                </label>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <div className="space-y-2 pt-4 mt-6 border-t border-gray-200 text-gray-800">
+          <div className="flex justify-between">
+            <span>Subtotal</span>
+            <span>${subTotal.toFixed(2)}</span>
+          </div>
+          <div className="flex justify-between">
+            <span>Platform Commission (20%)</span>
+            <span>${commission.toFixed(2)}</span>
+          </div>
+          <div className="flex justify-between font-semibold text-lg">
+            <span>Total</span>
+            <span>${totalWithCommission.toFixed(2)}</span>
           </div>
         </div>
 
-        <div className="flex justify-between font-semibold text-lg pt-4 mt-6 border-t border-gray-200">
-          <span>Total</span>
-          <span>${totalPrice}</span>
-        </div>
-
-        <button className="mt-6 w-full bg-[#21275c] text-white py-3 rounded-lg hover:bg-[#1b1f4a] transition-colors">
+        <button
+          onClick={handleCheckoutClick}
+          className="mt-6 w-full bg-[#21275c] text-white py-3 rounded-lg hover:bg-[#1b1f4a] transition-colors cursor-pointer"
+        >
           Proceed to Checkout
         </button>
       </div>
-      {/* قسم الدفع */}
+
+      {/* Payment Icons */}
       <div className="flex justify-between text-6xl text-[#21275c] cursor-pointer mt-4 px-10">
         <FaCcPaypal title="PayPal" />
         <FaCcVisa title="Visa" />
         <FaStripe title="Stripe" />
       </div>
+
+      {/* Website Image */}
       <div className="flex items-center justify-center mt-10">
         <Image
           src="https://www.qtonix.com/images/Prose-Moneyback.jpg"
           width={150}
           height={100}
-          alt="mony-back"
+          alt="money-back"
           className="object-cover"
         />
       </div>
+
+      {/* Website Info */}
       <div className="flex flex-col gap-5 mt-5">
         <div>
-          <h1 className="font-bold mb-1">Languages</h1>
-          <p className="underline text-blue-700">English</p>
+          <h1 className="font-bold mb-1">Language</h1>
+          <p className="underline text-blue-700">
+            {websiteData.language || "N/A"}
+          </p>
         </div>
         <div>
           <h1 className="font-bold mb-1">Website Categories</h1>
-          <p className="underline text-blue-700">Financial</p>
+          <p className="underline text-blue-700">
+            {websiteData.category || "N/A"}
+          </p>
         </div>
       </div>
+
+      {/* Tailwind animation for fadeInOut */}
+      <style jsx>{`
+        @keyframes fadeInOut {
+          0% { opacity: 0; transform: translateY(-10px); }
+          10% { opacity: 1; transform: translateY(0); }
+          90% { opacity: 1; transform: translateY(0); }
+          100% { opacity: 0; transform: translateY(-10px); }
+        }
+        .animate-fadeInOut {
+          animation: fadeInOut 4s ease forwards;
+        }
+      `}</style>
     </div>
   );
 };

@@ -12,7 +12,9 @@ declare const messages: {
     "About Us": "About Us",
     "Help & Support": "Help & Support",
     "Login": "Login",
-    "Sign Up": "Sign Up"
+    "Sign Up": "Sign Up",
+    "Dashboard": "Dashboard",
+    "Logout": "Logout"
   },
   "Hero": {
     "topTitle": "Guaranteed Publicity On",
@@ -146,12 +148,14 @@ declare const messages: {
     "contactSupportTitle": "Contact Support",
     "yourName": "Your Name",
     "yourEmail": "Your Email",
+    "whatsappSupportMessage": "Contact us on WhatsApp for help :",
     "yourMessage": "Your Message",
     "sendMessage": "Send Message",
     "additionalSupportTitle": "Additional Support Options",
     "callUs": "Call Us",
     "emailUs": "Email Us",
     "liveChat": "Live Chat",
+
     "getInTouch": "Get in Touch"
   },
   "MarketPlace": {
@@ -163,33 +167,59 @@ declare const messages: {
     "arabic": "Arabic",
     "english": "English",
     "contentType": "Content Type",
-    "pressRelease": "Press Release",
-    "guestPost": "Guest Post",
-    "sponsoredArticle": "Sponsored Article",
+    "blog": "blog",
+    "local_news": "Local News",
+    "news_media": "News Media",
     "interview": "Interview",
-    "productReview": "Product Review",
-    "newsFeature": "News Feature",
-    "editorial": "Editorial",
-    "companyProfile": "Company Profile",
+    "news_agency": "News Agency",
+    "portal": "Portal",
+    "social_media": "Social Media",
+    "press_release": "Press Release",
+    "company_profile": "Company Profile",
     "showMore": "Show more",
     "showLess": "Show less",
-    "priceRange": "Price Range (${price} and above)",
+    "priceRange": "Price Range (${min_price} and above)",
     "domainAuthority": "Domain Authority",
     "publishSpeed": "Publish Speed",
     "within24h": "Within 24h",
-    "2to3days": "2-3 days",
+    "2days": "2 days",
+    "3days": "3 days",
+    "4days": "4 days",
+    "5days": "5 days",
+    "6days": "6 days",
     "1week": "1 week",
     "targetAudience": "Target Audience",
     "global": "Global",
-    "10+": "10+",
-    "30+": "30+",
-    "50+": "50+",
-    "me": "Middle East",
+    "middle_east": "Middle East",
+    "10": "10+",
+    "30": "30+",
+    "50": "50+",
+    "70": "70+",
+    "90": "90+",
     "na": "North America",
-    "resetFilters": "Reset Filters"
+    "resetFilters": "Reset Filters",
+    "loading": "Loading...",
+    "empityText": "No platforms are currently available.",
+    "empitySubText": "Please try again later or adjust the filters"
   },
   "Recommended": {
-    "topContent": "Recommended Similar Websites"
+    "topContent": "Recommended Similar Websites",
+    "loading": "Loading...",
+    "noResults": "No similar platforms found."
+  },
+  "Login": {
+    "login": "Login",
+    "email": "Email",
+    "password": "Password",
+    "loading": "Loading..."
+  },
+  "Register": {
+    "register": "Sign Up",
+    "full-name": "Full Name",
+    "email": "Email",
+    "password": "Password",
+    "phone-number": "Phone Number",
+    "loading": "Loading..."
   }
 };
 export default messages;

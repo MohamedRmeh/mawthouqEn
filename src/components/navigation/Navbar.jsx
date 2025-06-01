@@ -1,18 +1,22 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { HiMenu, HiX } from "react-icons/hi";
-import { HiOutlineGlobeAlt } from "react-icons/hi";
+import {
+  HiOutlineGlobeAlt,
+  HiOutlineViewGrid,
+  HiOutlineLogout,
+} from "react-icons/hi";
 import LoginModal from "../auth/LoginModal";
 import SignupModal from "../auth/SignupModal";
 import { useRouter, usePathname } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import Cookies from "js-cookie";
 
 const Navbar = () => {
   const t = useTranslations("Navbar");
   const locale = useLocale();
-  console.log(locale);
   const navLinks = [
     { href: "/", label: t("Home") },
     { href: "/marketplace", label: t("Marketplace") },
@@ -23,6 +27,7 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
   const [signupOpen, setSignupOpen] = useState(false);
+  const [redictUrl, setRedictUrl] = useState();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -35,6 +40,17 @@ const Navbar = () => {
     const newLocale = pathname.startsWith("/en") ? "ar" : "en";
     const newPath = pathname.replace(/^\/(en|ar)/, `/${newLocale}`);
     router.push(newPath);
+  };
+
+  useEffect(() => {
+    setRedictUrl(localStorage.getItem("redirect_url") || undefined);
+  }, []);
+
+  const handleLogout = () => {
+    Cookies.remove("token"); // أو اسم التوكن الذي تستخدمه
+    localStorage.removeItem("redirect_url");
+    setRedictUrl(undefined);
+    router.push("/");
   };
 
   return (
@@ -67,20 +83,42 @@ const Navbar = () => {
             ))}
           </ul>
 
-          {/* Buttons - Right */}
           <div className="hidden lg:flex items-center gap-4">
-            <button
-              onClick={() => setLoginOpen(true)}
-              className="bg-blue-500 text-white font-medium px-6 py-1.5 rounded-lg transition-all duration-300 hover:bg-blue-600 shadow-sm cursor-pointer text-[15px]"
-            >
-              {t("Login")}
-            </button>
-            <button
-              onClick={() => setSignupOpen(true)}
-              className="border border-slate-400 text-[#21275c] font-medium px-5 py-1.5 rounded-lg transition-all duration-300 hover:bg-[#21275c]/10 shadow-sm cursor-pointer text-[15px]"
-            >
-              {t("Sign Up")}
-            </button>
+            {redictUrl ? (
+              <>
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center gap-2 bg-red-600 text-white font-medium px-5 py-2 rounded-lg transition-all duration-300 hover:bg-red-600/80 shadow-md text-[15px] cursor-pointer"
+                >
+                  <HiOutlineLogout size={20} />
+                  <span>{t("Logout")}</span>
+                </button>
+                <Link
+                  href={redictUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 bg-[#2e3466] text-white font-medium px-5 py-2 rounded-lg transition-all duration-300 hover:bg-[#1a1f4a] shadow-md text-[15px]"
+                >
+                  <HiOutlineViewGrid size={20} />
+                  <span>{t("Dashboard")}</span>
+                </Link>
+              </>
+            ) : (
+              <>
+                <button
+                  onClick={() => setLoginOpen(true)}
+                  className="bg-blue-500 text-white font-medium px-6 py-1.5 rounded-lg transition-all duration-300 hover:bg-blue-600 shadow-sm cursor-pointer text-[15px]"
+                >
+                  {t("Login")}
+                </button>
+                <button
+                  onClick={() => setSignupOpen(true)}
+                  className="border border-slate-400 text-[#21275c] font-medium px-5 py-1.5 rounded-lg transition-all duration-300 hover:bg-[#21275c]/30 shadow-sm cursor-pointer text-[15px]"
+                >
+                  {t("Sign Up")}
+                </button>
+              </>
+            )}
             <button
               onClick={toggleLocale}
               className="text-[#737373] hover:text-black transition-colors duration-300 cursor-pointer"
@@ -116,26 +154,51 @@ const Navbar = () => {
                 </Link>
               </li>
             ))}
-            <li className="flex items-center flex-col gap-4">
-              <button
-                onClick={() => {
-                  setLoginOpen(true);
-                  setMenuOpen(false);
-                }}
-                className="text-[#737373] font-medium hover:text-black transition-colors duration-300"
-              >
-                Login
-              </button>
-              <button
-                onClick={() => {
-                  setSignupOpen(true);
-                  setMenuOpen(false);
-                }}
-                className="text-[#737373] font-medium hover:text-black transition-colors duration-300"
-              >
-                Sign Up
-              </button>
-            </li>
+            {redictUrl ? (
+              <li className="flex flex-col items-center gap-4">
+                <button
+                  onClick={() => {
+                    handleLogout();
+                    setMenuOpen(false);
+                  }}
+                  className="flex items-center gap-2 bg-red-600 text-white font-medium px-4 py-1.5 rounded-lg transition-all duration-300 hover:bg-red-700 shadow text-sm"
+                >
+                  <HiOutlineLogout size={20} />
+                  {t("Logout")}
+                </button>
+                <Link
+                  href={redictUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 bg-[#2e3466] text-white font-medium px-4 py-1.5 rounded-lg transition-all duration-300 hover:bg-[#1a1f4a] shadow text-sm"
+                >
+                  <HiOutlineViewGrid size={20} />
+                  {t("Dashboard")}
+                </Link>
+              </li>
+            ) : (
+              <li className="flex flex-col items-center gap-4">
+                <button
+                  onClick={() => {
+                    setLoginOpen(true);
+                    setMenuOpen(false);
+                  }}
+                  className="text-[#737373] font-medium hover:text-black transition-colors duration-300"
+                >
+                  {t("Login")}
+                </button>
+                <button
+                  onClick={() => {
+                    setSignupOpen(true);
+                    setMenuOpen(false);
+                  }}
+                  className="text-[#737373] font-medium hover:text-black transition-colors duration-300"
+                >
+                  {t("Sign Up")}
+                </button>
+              </li>
+            )}
+
             <li>
               <button
                 onClick={() => {
@@ -150,8 +213,16 @@ const Navbar = () => {
           </ul>
         </div>
       </nav>
-      <LoginModal isOpen={loginOpen} onClose={() => setLoginOpen(false)} />
-      <SignupModal isOpen={signupOpen} onClose={() => setSignupOpen(false)} />
+      <LoginModal
+        setRedictUrl={setRedictUrl}
+        isOpen={loginOpen}
+        onClose={() => setLoginOpen(false)}
+      />
+      <SignupModal
+        setRedictUrl={setRedictUrl}
+        isOpen={signupOpen}
+        onClose={() => setSignupOpen(false)}
+      />
     </>
   );
 };

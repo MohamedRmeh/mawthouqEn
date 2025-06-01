@@ -14,7 +14,7 @@ const Footer = () => {
   const lang = useLocale() === "en" ? true : false;
 
   return (
-    <footer className="bg-[#21275c] text-white py-12">
+    <footer className="bg-[#21275c] text-white py-10">
       <div className="container mx-auto px-10">
         <div
           className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-x-10 gap-y-8 text-center ${

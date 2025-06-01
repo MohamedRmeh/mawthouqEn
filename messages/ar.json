@@ -9,7 +9,9 @@
     "About Us": "من نحن",
     "Help & Support": "المساعدة والدعم",
     "Login": "تسجيل الدخول",
-    "Sign Up": "إنشاء حساب"
+    "Sign Up": "إنشاء حساب",
+    "Dashboard": "لوحة التحكم",
+    "Logout": "تسجيل الخروج"
   },
   "Hero": {
     "topTitle": "ظهور مضمون في",
@@ -149,6 +151,7 @@
     "callUs": "اتصل بنا",
     "emailUs": "راسلنا عبر البريد الإلكتروني",
     "liveChat": "الدردشة المباشرة",
+    "whatsappSupportMessage": "تواصل معنا عبر واتساب للمساعدة :",
     "getInTouch": "تواصل معنا"
   },
   "MarketPlace": {
@@ -160,32 +163,58 @@
     "arabic": "العربية",
     "english": "الإنجليزية",
     "contentType": "نوع المحتوى",
-    "pressRelease": "بيان صحفي",
-    "guestPost": "مقال ضيف",
-    "sponsoredArticle": "مقال برعاية",
+    "blog": "مدونة",
+    "local_news": "أخبار محلية",
+    "news_media": "وسائل إعلام إخبارية",
     "interview": "مقابلة",
-    "productReview": "مراجعة منتج",
-    "newsFeature": "تقرير إخباري",
-    "editorial": "افتتاحية",
-    "companyProfile": "ملف الشركة",
+    "news_agency": "وكالة أنباء",
+    "portal": "بوابة إلكترونية",
+    "social_media": "وسائل التواصل الاجتماعي",
+    "company_profile": "الملف التعريفي للشركة",
+    "press_release": "بيان صحفي",
     "showMore": "عرض المزيد",
     "showLess": "عرض أقل",
-    "priceRange": "نطاق السعر (${price} وأكثر)",
+    "priceRange": "نطاق السعر (${min_price} وأكثر)",
     "domainAuthority": "قوة النطاق",
     "publishSpeed": "سرعة النشر",
     "within24h": "خلال 24 ساعة",
-    "2to3days": "2-3 أيام",
-    "1week": "أسبوع",
+    "2days": "يوميان",
+    "3days": "3 ايام",
+    "4days": "4 ايام",
+    "5days": "5 ايام",
+    "6days": "6 ايام",
+    "1week": "1 اسبوع",
     "targetAudience": "الجمهور المستهدف",
     "global": "عالمي",
-    "10+": "10+",
-    "30+": "30+",
-    "50+": "50+",
-    "me": "الشرق الأوسط",
+    "middle_east": "الشرق الأوسط",
+    "10": "10+",
+    "30": "30+",
+    "50": "50+",
+    "70": "70+",
+    "90": "90+",
     "na": "أمريكا الشمالية",
-    "resetFilters": "إعادة ضبط الفلاتر"
+    "resetFilters": "إعادة ضبط الفلاتر",
+    "loading": "جاري تحميل البيانات...",
+    "empityText": "لا توجد منصات متاحة حالياً",
+    "empitySubText": "يرجى المحاولة لاحقاً أو تغيير الفلاتر."
   },
   "Recommended": {
-    "topContent": "مواقع مشابهة موصى بها"
+    "topContent": "مواقع مشابهة موصى بها",
+    "loading": "جاري التحميل...",
+    "noResults": "لم يتم العثور على منصات مشابهة."
+  },
+  "Login": {
+    "login": "تسجيل الدخول",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة السر",
+    "loading": "جار التحميل..."
+  },
+  "Register": {
+    "register": "إنشاء حساب",
+    "full-name": "الاسم الكامل",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة السر",
+    "phone-number": "رقم الهاتف",
+    "loading": "جار التحميل..."
   }
 }
