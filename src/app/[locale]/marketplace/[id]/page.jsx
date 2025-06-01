@@ -99,9 +99,9 @@ const Page = () => {
             <Image
               width={320}
               height={320}
-              src={data.img || "/images/testImg.jpeg"}
+              src={data.image || "/images/testImg.jpeg"}
               alt={data.name}
-              className="rounded-xl object-cover shadow-md w-full max-w-[320px] h-auto"
+              className="rounded-xl object-cover shadow-md w-full max-w-[320px] h-45"
             />
             <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-gray-300 to-transparent md:h-[200px] md:w-px md:bg-gradient-to-b hidden md:block" />
             <div
