@@ -45,7 +45,7 @@ const SupportPage = () => {
       from_name: formData.from_name,
       from_email: formData.from_email,
       message: formData.message,
-      to_email: "mrme02891@gmail.com",
+      to_email: "mawthouqpost@gmail.com",
       reply_to: formData.from_email,
     };
     console.log(templateParams);
