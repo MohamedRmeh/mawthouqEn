@@ -167,6 +167,7 @@ declare const messages: {
     "arabic": "Arabic",
     "english": "English",
     "contentType": "Content Type",
+
     "blog": "blog",
     "local_news": "Local News",
     "news_media": "News Media",
@@ -176,6 +177,7 @@ declare const messages: {
     "social_media": "Social Media",
     "press_release": "Press Release",
     "company_profile": "Company Profile",
+
     "showMore": "Show more",
     "showLess": "Show less",
     "priceRange": "Price Range (${min_price} and above)",
@@ -220,6 +222,32 @@ declare const messages: {
     "password": "Password",
     "phone-number": "Phone Number",
     "loading": "Loading..."
+  },
+  "checkout": {
+    "featuredText": "Get featured on <name>{name}</name> — trusted by <category>{category}</category> leaders.",
+    "boostText": "Boost your brand’s visibility by publishing on a trusted platform like <name>{name}</name>.",
+    "publishedWithin": "Published within: ",
+    "businessDays": "business days: ",
+    "estimatedViews": "Estimated Views",
+    "contentType": "Content Type",
+    "blog": "blog",
+    "local_news": "Local News",
+    "news_media": "News Media",
+    "interview": "Interview",
+    "news_agency": "News Agency",
+    "portal": "Portal",
+    "social_media": "Social Media",
+    "press_release": "Press Release",
+    "company_profile": "Company Profile",
+    "checkout": "Checkout",
+    "base_price": "Base Price",
+    "Subtotal": "Subtotal",
+    "platform_commission": "Platform Commission",
+    "total": "Total",
+    "proceed_to_checkout": "Proceed to Checkout",
+    "lastType": "Publish your articles and expand your audience on a trusted platform.",
+    "lang": "Language",
+    "website_category": "Website Category"
   }
 };
 export default messages;

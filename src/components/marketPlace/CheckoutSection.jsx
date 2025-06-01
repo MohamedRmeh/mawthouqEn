@@ -4,11 +4,14 @@ import { FaCcPaypal, FaCcVisa, FaStripe } from "react-icons/fa";
 import React, { useState } from "react";
 import CheckoutModal from "./CheckoutModal"; 
 import Cookies from "js-cookie";
+import { useTranslations, useLocale } from "next-intl";
 
 const CheckoutSection = ({ websiteData }) => {
-  const basePrice = parseFloat(websiteData.price || 0);
+    const t = useTranslations("checkout");
+
+  const basePrice = parseFloat(websiteData?.price || 0);
   const commissionRate = 0.2;
-  const extras = websiteData.extra_features || [];
+  const extras = websiteData?.extra_features || [];
   const [selectedExtras, setSelectedExtras] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
@@ -57,11 +60,11 @@ const CheckoutSection = ({ websiteData }) => {
       )}
 
       <div className="rounded-xl h-fit p-4 border border-gray-200">
-        <h2 className="text-2xl font-semibold text-[#21275c] mb-6">Checkout</h2>
+        <h2 className="text-2xl font-semibold text-[#21275c] mb-6">{t("checkout")}</h2>
 
         <div className="mb-6 space-y-4">
           <div className="flex justify-between text-gray-800 font-medium">
-            <span>Base Price</span>
+            <span>{t("base_price")}</span>
             <span>${basePrice.toFixed(2)}</span>
           </div>
 
@@ -92,15 +95,15 @@ const CheckoutSection = ({ websiteData }) => {
 
         <div className="space-y-2 pt-4 mt-6 border-t border-gray-200 text-gray-800">
           <div className="flex justify-between">
-            <span>Subtotal</span>
+            <span>{t("Subtotal")}</span>
             <span>${subTotal.toFixed(2)}</span>
           </div>
           <div className="flex justify-between">
-            <span>Platform Commission (20%)</span>
+            <span>{t("platform_commission")} (20%)</span>
             <span>${commission.toFixed(2)}</span>
           </div>
           <div className="flex justify-between font-semibold text-lg">
-            <span>Total</span>
+            <span>{t("total")}</span>
             <span>${totalWithCommission.toFixed(2)}</span>
           </div>
         </div>
@@ -109,7 +112,7 @@ const CheckoutSection = ({ websiteData }) => {
           onClick={handleCheckoutClick}
           className="mt-6 w-full bg-[#21275c] text-white py-3 rounded-lg hover:bg-[#1b1f4a] transition-colors cursor-pointer"
         >
-          Proceed to Checkout
+          {t("proceed_to_checkout")}
         </button>
       </div>
 
@@ -134,15 +137,15 @@ const CheckoutSection = ({ websiteData }) => {
       {/* Website Info */}
       <div className="flex flex-col gap-5 mt-5">
         <div>
-          <h1 className="font-bold mb-1">Language</h1>
+          <h1 className="font-bold mb-1">{t("lang")}</h1>
           <p className="underline text-blue-700">
-            {websiteData.language || "N/A"}
+            {websiteData?.language || "N/A"}
           </p>
         </div>
         <div>
-          <h1 className="font-bold mb-1">Website Categories</h1>
+          <h1 className="font-bold mb-1">{t("website_category")}</h1>
           <p className="underline text-blue-700">
-            {websiteData.category || "N/A"}
+            {websiteData?.category || "N/A"}
           </p>
         </div>
       </div>

@@ -56,30 +56,36 @@ const Card = ({ websites, loading, onPageChange }) => {
           platforms?.map((site) => (
             <div
               key={site.id}
-              className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-slate-300"
+              className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-slate-300 flex flex-col h-[290px]" // <-- height ثابت
             >
               <Link locale={locale} href={`/marketplace/${site.id}`}>
                 <img
-                  src={site.img || "/images/testImg.jpeg"}
+                  src={site?.image || "/images/testImg.jpeg"} 
                   alt={site.name}
                   className="w-full h-40 object-cover border-b border-slate-300 cursor-pointer"
                 />
               </Link>
-              <div className="p-4">
-                <h2 className="text-lg font-semibold mb-1">{site.name}</h2>
-                <a
-                  href={site.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-slate-500 underline text-sm break-words"
-                >
-                  {site.url}
-                </a>
+
+              <div className="p-4 flex flex-col justify-between flex-1">
+                <div>
+                  <h2 className="text-lg font-semibold mb-1 line-clamp-1">
+                    {site.name}
+                  </h2>
+                  <a
+                    href={site.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-slate-500 underline text-sm break-words line-clamp-1"
+                  >
+                    {site.url}
+                  </a>
+                </div>
+
                 <div className="mt-3 flex items-center justify-between text-sm">
-                  <span className="font-bold text-[#21275c]">
+                  <span className="font-bold text-[#21275c] line-clamp-1">
                     {site.price || "$0"}
                   </span>
-                  <span className="text-gray-500">
+                  <span className="text-gray-500 line-clamp-1">
                     {site.views || "0"} views
                   </span>
                 </div>

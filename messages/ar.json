@@ -163,6 +163,7 @@
     "arabic": "العربية",
     "english": "الإنجليزية",
     "contentType": "نوع المحتوى",
+
     "blog": "مدونة",
     "local_news": "أخبار محلية",
     "news_media": "وسائل إعلام إخبارية",
@@ -172,6 +173,7 @@
     "social_media": "وسائل التواصل الاجتماعي",
     "company_profile": "الملف التعريفي للشركة",
     "press_release": "بيان صحفي",
+
     "showMore": "عرض المزيد",
     "showLess": "عرض أقل",
     "priceRange": "نطاق السعر (${min_price} وأكثر)",
@@ -216,5 +218,31 @@
     "password": "كلمة السر",
     "phone-number": "رقم الهاتف",
     "loading": "جار التحميل..."
+  },
+  "checkout": {
+    "featuredText": "كن من المميزين على <name>{name}</name> — موثوق به من قِبل روّاد <category>{category}</category>.",
+    "boostText": "عزّز ظهور علامتك التجارية من خلال النشر على منصة موثوقة مثل <name>{name}</name>.",
+    "publishedWithin": "يُنشر خلال: ",
+    "businessDays": "أيام عمل: ",
+    "estimatedViews": "عدد المشاهدات المتوقع",
+    "contentType": "نوع المحتوى",
+    "blog": "مدونة",
+    "local_news": "أخبار محلية",
+    "news_media": "وسائل إعلام إخبارية",
+    "interview": "مقابلة",
+    "news_agency": "وكالة أنباء",
+    "portal": "بوابة إلكترونية",
+    "social_media": "وسائل التواصل الاجتماعي",
+    "company_profile": "الملف التعريفي للشركة",
+    "press_release": "بيان صحفي",
+    "checkout": "الدفع",
+    "base_price": "السعر الاساسي",
+    "Subtotal": "المجموع الفرعي",
+    "platform_commission": "عمولة المنصة",
+    "total": "المجموع الكلي",
+    "proceed_to_checkout": "المتابعة إلى الدفع",
+        "lastType": "انشر مقالاتك ووسع جمهورك على منصة موثوقة.",
+            "lang": "اللغة",
+            "website_category": "تصنيف الموقع"
   }
 }

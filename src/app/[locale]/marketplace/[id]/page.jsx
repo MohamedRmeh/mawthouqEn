@@ -7,10 +7,13 @@ import axios from "axios";
 import CheckoutSection from "@/components/marketPlace/CheckoutSection";
 import Recommended from "@/components/marketPlace/Recommended";
 import { Inter } from "next/font/google";
+import { useTranslations, useLocale } from "next-intl";
 
 const inter = Inter({ subsets: ["latin"] });
 
 const Page = () => {
+  const lang = useLocale();
+  const t = useTranslations("checkout");
   const { id } = useParams();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -71,23 +74,24 @@ const Page = () => {
   }
 
   return (
-    <section
-      dir="ltr"
-      className={`${inter.className} w-full px-4 md:px-20 mt-14 mb-20`}
-    >
+    <section className={`w-full px-4 md:px-20 mt-14 mb-20`}>
       <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-10">
         {/* Main Content */}
         <div className="flex flex-col gap-10 md:col-span-2">
           <div className="flex flex-col gap-3">
             <h1 className="text-2xl md:text-4xl text-[#21275c] font-bold leading-snug capitalize max-w-[95%]">
-              Get featured on <span className="text-blue-700">{data.name}</span>{" "}
-              — trusted by{" "}
-              <span className="text-blue-700">{data.category}</span> leaders.
+              {t.rich("featuredText", {
+                name: () => <span className="text-blue-700">{data.name}</span>,
+                category: () => (
+                  <span className="text-blue-700">{data.category}</span>
+                ),
+              })}
             </h1>
 
             <p className="text-slate-600 text-base md:text-lg">
-              Boost your brand’s visibility by publishing on a trusted platform
-              like {data.name}
+              {t.rich("boostText", {
+                name: () => <span className="text-blue-700">{data.name}</span>,
+              })}
             </p>
           </div>
 
@@ -100,7 +104,11 @@ const Page = () => {
               className="rounded-xl object-cover shadow-md w-full max-w-[320px] h-auto"
             />
             <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-gray-300 to-transparent md:h-[200px] md:w-px md:bg-gradient-to-b hidden md:block" />
-            <div className="flex flex-col gap-3 text-gray-800 text-sm md:text-base text-center md:text-left">
+            <div
+              className={`flex flex-col gap-3 text-gray-800 text-sm md:text-base text-center ${
+                lang === "en" ? "md:text-left" : "md:text-right"
+              }`}
+            >
               <Link
                 href={data.url}
                 target="_blank"
@@ -108,15 +116,18 @@ const Page = () => {
               >
                 {data.url}
               </Link>
-              <span className="font-medium">{data.content_type}</span>
+              <span className="font-medium">
+                {t("contentType")}:{""}{" "}
+                {t(`${data.content_type.toLowerCase()}`)}
+              </span>{" "}
               <span>
-                Published within{" "}
+                {t("publishedWithin")}
                 <span className="bg-gray-100 px-2 py-0.5 rounded text-sm font-medium text-gray-700">
-                  {data.avg_publish_time} business days
+                  {data.avg_publish_time} {t("businessDays")}
                 </span>
               </span>
               <span>
-                Estimated Views :{" "}
+                {t("estimatedViews")} :{" "}
                 <span className="bg-gray-100 px-2 py-0.5 rounded text-sm font-medium text-gray-700">
                   {data.views.toLocaleString()}
                 </span>
@@ -125,8 +136,8 @@ const Page = () => {
           </div>
 
           <div className="text-base md:text-lg leading-relaxed text-gray-700">
-            <p className="leading-relaxed mb-5">
-              <strong>{data.name}:</strong> {data.category} - {data.language}
+            <p className="leading-relaxed mb-5 font-semibold text-gray-700">
+              {t("lastType")}
             </p>
             <p className="mb-5">{data.description}</p>
           </div>

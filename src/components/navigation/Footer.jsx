@@ -30,9 +30,6 @@ const Footer = () => {
             <p className="text-sm text-gray-400">
               {t("email")}: support@mawthouqpost.com
             </p>
-            <p className="text-sm text-gray-400">
-              {t("phone")}: +1 800 123 4567
-            </p>
           </div>
 
           {/* روابط سريعة */}
@@ -90,7 +87,7 @@ const Footer = () => {
             <p className="text-sm text-gray-300">{t("stayConnected")}</p>
             <div className="flex gap-4 text-white text-lg justify-center sm:justify-start">
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/people/%D9%85%D9%88%D8%AB%D9%88%D9%82-%D8%A8%D9%88%D8%B3%D8%AA-mawthoqpostcom/61561932255444/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"

@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { FaTrophy, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { useTranslations, useLocale } from "next-intl";
 import LazyVideo from "./LazyVideo";
@@ -55,14 +55,14 @@ const Hero = () => {
           {/* Buttons */}
           <div className="mt-6 sm:mt-7 flex justify-center lg:justify-start gap-2 sm:gap-4 whitespace-nowrap">
             <Link
-              href="/"
+              href="/marketplace"
               className="bg-gradient-to-b from-[#0056f0] to-[#0040c0] text-white px-5 sm:px-15 py-3 rounded-full font-semibold text-base sm:text-lg uppercase shadow-md hover:brightness-110 transition-all duration-300 tracking-[0.5px] sm:tracking-[1px]"
             >
               {t("getStarted")}
             </Link>
 
             <Link
-              href="/"
+              href="/about"
               className="border border-slate-400 text-black px-5 sm:px-15 hover:bg-slate-200 py-3 rounded-full font-semibold transition text-base sm:text-lg uppercase tracking-[0.5px] sm:tracking-[1px]"
             >
               {t("learnMore")}

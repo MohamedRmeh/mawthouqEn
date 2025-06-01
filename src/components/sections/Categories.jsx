@@ -70,14 +70,14 @@ const Categories = () => {
             className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-10 justify-items-center"
           >
             {categories.map((category, index) => (
-              <Link href={category.href} key={index}>
+              <div key={index}>
                 <div className="flex flex-col items-center text-center space-y-4 transition-transform duration-300 hover:scale-105">
                   {category.icon}
                   <p className="md:text-xl font-medium text-slate-800">
                     {category.name}
                   </p>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         </div>

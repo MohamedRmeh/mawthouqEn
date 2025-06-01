@@ -1,9 +1,16 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { FaCheck } from "react-icons/fa";
 import { useTranslations, useLocale } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 const Service = () => {
+  const [redictUrl, setRedictUrl] = useState();
+
+  useEffect(() => {
+    setRedictUrl(localStorage.getItem("redirect_url") || undefined);
+  }, []);
   const t = useTranslations("Service");
   const lang = useLocale() === "en" ? true : false;
   return (
@@ -45,9 +52,12 @@ const Service = () => {
             ))}
           </ul>
 
-          <button className="bg-gradient-to-b from-[#0056f0] to-[#0040c0] text-white px-5 sm:px-15 py-3 rounded-lg font-semibold text-base sm:text-lg uppercase shadow-md hover:brightness-110 transition-all duration-300 tracking-[0.5px]">
+          <Link
+            href="/marketplace"
+            className="bg-gradient-to-b from-[#0056f0] to-[#0040c0] text-white px-5 sm:px-15 py-3 rounded-lg font-semibold text-base sm:text-lg uppercase shadow-md hover:brightness-110 transition-all duration-300 tracking-[0.5px] cursor-pointer"
+          >
             {t("button")}
-          </button>
+          </Link>
         </div>
 
         {/* Image */}
