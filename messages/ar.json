@@ -223,7 +223,7 @@
     "featuredText": "كن من المميزين على <name>{name}</name> — موثوق به من قِبل روّاد <category>{category}</category>.",
     "boostText": "عزّز ظهور علامتك التجارية من خلال النشر على منصة موثوقة مثل <name>{name}</name>.",
     "publishedWithin": "يُنشر خلال: ",
-    "businessDays": "أيام عمل: ",
+    "businessDays": "أيام عمل ",
     "estimatedViews": "عدد المشاهدات المتوقع",
     "contentType": "نوع المحتوى",
     "blog": "مدونة",

@@ -227,7 +227,7 @@ declare const messages: {
     "featuredText": "Get featured on <name>{name}</name> — trusted by <category>{category}</category> leaders.",
     "boostText": "Boost your brand’s visibility by publishing on a trusted platform like <name>{name}</name>.",
     "publishedWithin": "Published within: ",
-    "businessDays": "business days: ",
+    "businessDays": "business days ",
     "estimatedViews": "Estimated Views",
     "contentType": "Content Type",
     "blog": "blog",

@@ -60,8 +60,8 @@ const Recommended = ({ id }) => {
                 <Link href={`/marketplace/${site.id}`}>
                   <img
                     src={site.image || "/images/testImg.jpeg"}
-                    alt={site.name}
-                    className="w-full h-44 object-cover cursor-pointer border-b border-slate-200"
+                    alt={site?.name}
+                    className="w-full h-44 object-contain cursor-pointer border-b border-slate-200"
                   />
                 </Link>
                 <div className="p-5">
@@ -80,7 +80,9 @@ const Recommended = ({ id }) => {
                     <span className="font-bold text-[#21275c]">
                       ${site?.price * 1.2}
                     </span>
-                    <span className="text-gray-500">{site.views} views</span>
+                    {site?.views && (
+                      <span className="text-gray-500">{site?.views} views</span>
+                    )}
                   </div>
                 </div>
               </div>

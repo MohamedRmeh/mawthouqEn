@@ -62,7 +62,7 @@ const Card = ({ websites, loading, onPageChange }) => {
                 <img
                   src={site?.image || "/images/testImg.jpeg"}
                   alt={site.name}
-                  className="w-full h-40 object-cover border-b border-slate-300 cursor-pointer"
+                  className="w-full h-40 object-contain border-b border-slate-300 cursor-pointer"
                 />
               </Link>
 
@@ -85,9 +85,11 @@ const Card = ({ websites, loading, onPageChange }) => {
                   <span className="font-bold text-[#21275c] line-clamp-1">
                     {site.price ? `$${(site.price * 1.2).toFixed(2)}` : "$0"}
                   </span>
-                  <span className="text-gray-500 line-clamp-1">
-                    {site.views || "0"} views
-                  </span>
+                  {site?.views && (
+                    <span className="text-gray-500 line-clamp-1">
+                      {site?.views || "0"} views
+                    </span>
+                  )}
                 </div>
               </div>
             </div>

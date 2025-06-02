@@ -99,9 +99,9 @@ const Page = () => {
             <Image
               width={320}
               height={320}
-              src={data.image || "/images/testImg.jpeg"}
+              src={data?.image || "/images/testImg.jpeg"}
               alt={data.name}
-              className="rounded-xl object-cover shadow-md w-full max-w-[320px] h-45"
+              className="rounded-xl object-contain shadow-md w-full max-w-[320px] h-45"
             />
             <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-gray-300 to-transparent md:h-[200px] md:w-px md:bg-gradient-to-b hidden md:block" />
             <div
@@ -126,12 +126,14 @@ const Page = () => {
                   {data.avg_publish_time} {t("businessDays")}
                 </span>
               </span>
-              <span>
-                {t("estimatedViews")} :{" "}
-                <span className="bg-gray-100 px-2 py-0.5 rounded text-sm font-medium text-gray-700">
-                  {data.views.toLocaleString()}
+              {data?.views && (
+                <span>
+                  {t("estimatedViews")} :{" "}
+                  <span className="bg-gray-100 px-2 py-0.5 rounded text-sm font-medium text-gray-700">
+                    {data?.views.toLocaleString()}
+                  </span>
                 </span>
-              </span>
+              )}
             </div>
           </div>
 
