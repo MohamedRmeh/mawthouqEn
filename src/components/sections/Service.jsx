@@ -2,17 +2,18 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { FaCheck } from "react-icons/fa";
-import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { useLocale } from "next-intl";
 
-const Service = () => {
+const Service = ({ texts }) => {
   const [redictUrl, setRedictUrl] = useState();
 
   useEffect(() => {
     setRedictUrl(localStorage.getItem("redirect_url") || undefined);
   }, []);
-  const t = useTranslations("Service");
+
   const lang = useLocale() === "en" ? true : false;
+
   return (
     <section
       className="
@@ -38,13 +39,13 @@ const Service = () => {
           className="w-full lg:w-[60%] space-y-7"
         >
           <h1 className="text-3xl lg:text-5xl font-bold text-[#21275c] leading-tight">
-            {t("title")}
+            {texts?.title}
           </h1>
           <p className="text-slate-600 text-lg lg:text-xl leading-relaxed">
-            {t("description")}
+            {texts?.description}
           </p>
           <ul className="space-y-3 text-slate-600 text-base lg:text-lg">
-            {t.raw("features").map((feature, index) => (
+            {texts?.features.map((feature, index) => (
               <li key={index} className="flex items-start gap-2">
                 <FaCheck className="text-green-600 mt-1" />
                 <span>{feature}</span>
@@ -56,7 +57,7 @@ const Service = () => {
             href="/marketplace"
             className="bg-gradient-to-b from-[#0056f0] to-[#0040c0] text-white px-5 sm:px-15 py-3 rounded-lg font-semibold text-base sm:text-lg uppercase shadow-md hover:brightness-110 transition-all duration-300 tracking-[0.5px] cursor-pointer"
           >
-            {t("button")}
+            {texts?.button}
           </Link>
         </div>
 

@@ -40,13 +40,13 @@ const Recommended = ({ id }) => {
   }, [id]);
 
   return (
-    <section className={`${fontClass} py-10 sm:px-8 lg:px-14 mt-20`}>
-      <div className="max-w-7xl mx-auto">
+    <section className={`${fontClass} py-10  mt-20`}>
+      <div className=" mx-auto">
         <h1 className="text-2xl sm:text-4xl font-semibold text-[#21275c] mb-10 text-center">
           {t("topContent")}
         </h1>
 
-        <div className="flex flex-wrap gap-6 justify-center items-center">
+        <div className="flex flex-wrap gap-3 justify-center items-center">
           {!loading && platforms.length === 0 ? (
             <div className="col-span-full text-center text-gray-500 py-5 capitalize">
               <p className="text-lg">{t("noResults")}</p>
@@ -55,7 +55,7 @@ const Recommended = ({ id }) => {
             platforms.map((site) => (
               <div
                 key={site.id}
-                className="bg-white rounded-2xl overflow-hidden shadow-md transition-all duration-300 border border-slate-200 w-full sm:w-[300px]"
+                className="bg-white rounded-2xl overflow-hidden shadow-md transition-all duration-300 border border-slate-200 w-full sm:w-[275px]"
               >
                 <Link href={`/marketplace/${site.id}`}>
                   <img

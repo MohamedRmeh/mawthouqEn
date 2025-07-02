@@ -42,6 +42,8 @@ const CheckoutSection = ({ websiteData }) => {
     setShowModal(true);
   };
 
+  
+
   return (
     <div className="mt-10 relative">
       {/* Alert Message */}

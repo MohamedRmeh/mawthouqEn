@@ -2,7 +2,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
 
 const CheckoutModal = ({ onClose, selectedExtras, id }) => {
   const t = useTranslations("checkoutModal");
@@ -11,6 +11,8 @@ const CheckoutModal = ({ onClose, selectedExtras, id }) => {
   const [articleText, setArticleText] = useState("");
   const [articleFile, setArticleFile] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertType, setAlertType] = useState("success"); // 'success' or 'error'
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -27,14 +29,16 @@ const CheckoutModal = ({ onClose, selectedExtras, id }) => {
     e.preventDefault();
 
     if (!articleText && !articleFile) {
-      alert("Please fill at least one of the fields.");
+      setAlertMessage("⚠️ يرجى ملء أحد الحقول على الأقل.");
+      setAlertType("error");
+      setTimeout(() => setAlertMessage(""), 4000);
       return;
     }
 
     const formData = new FormData();
 
     if (articleText) {
-      formData.append("article_text", articleText);
+      formData.append("article_text", articleText); // notes_for_publisher
     }
 
     if (articleFile) {
@@ -42,6 +46,7 @@ const CheckoutModal = ({ onClose, selectedExtras, id }) => {
     }
 
     formData.append("website_id", id);
+    formData.append("order_type", "website");
 
     const extrasIds = selectedExtras.map((extra) => extra.id);
     extrasIds.forEach((extraId, index) => {
@@ -50,7 +55,6 @@ const CheckoutModal = ({ onClose, selectedExtras, id }) => {
 
     try {
       setLoading(true);
-
       const token = Cookies.get("token");
 
       const response = await axios.post(
@@ -58,17 +62,25 @@ const CheckoutModal = ({ onClose, selectedExtras, id }) => {
         formData,
         {
           headers: {
-            "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${token}`,
           },
         }
       );
 
-      alert("Order submitted successfully!");
-      onClose();
+      setAlertMessage("✅ تم إرسال الطلب بنجاح!");
+      setAlertType("success");
+      setTimeout(() => {
+        setAlertMessage("");
+        onClose();
+      }, 4000);
     } catch (error) {
       console.error("Submission error:", error);
-      alert("Failed to submit order.");
+      const errorMessage =
+        error?.response?.data?.message || "❌ فشل في إرسال الطلب.";
+
+      setAlertMessage(`❌ ${errorMessage}`);
+      setAlertType("error");
+      setTimeout(() => setAlertMessage(""), 4000);
     } finally {
       setLoading(false);
     }
@@ -76,6 +88,15 @@ const CheckoutModal = ({ onClose, selectedExtras, id }) => {
 
   return (
     <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center px-4">
+      {alertMessage && (
+        <div
+          className={`fixed top-5 right-5 px-5 py-3 rounded-lg shadow-lg z-50 animate-fadeInOut text-white 
+            ${alertType === "success" ? "bg-green-600" : "bg-red-600"}`}
+        >
+          {alertMessage}
+        </div>
+      )}
+
       <div
         ref={modalRef}
         className="bg-white rounded-2xl p-6 w-full max-w-md shadow-2xl relative animate-fadeIn"
@@ -124,6 +145,43 @@ const CheckoutModal = ({ onClose, selectedExtras, id }) => {
           </button>
         </form>
       </div>
+
+      <style jsx>{`
+        @keyframes fadeInOut {
+          0% {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          10% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+          90% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+          100% {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+        }
+        .animate-fadeInOut {
+          animation: fadeInOut 4s ease forwards;
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+      `}</style>
     </div>
   );
 };

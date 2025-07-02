@@ -61,22 +61,27 @@ const Footer = () => {
 
           {/* خدماتنا */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">{t("ourServices")}</h3>
+            <h3 className="text-lg font-semibold">{t("more_info")}</h3>
             <ul className="space-y-2 text-sm text-gray-200">
-              <li className="hover:text-gray-100 transition-colors duration-200">
-                {t("pressReleaseDistribution")}
+              <li>
+                <Link href="/privacy_policy" className="hover:underline">
+                  {t("privacy_policy")}
+                </Link>
               </li>
-              <li className="hover:text-gray-100 transition-colors duration-200">
-                {t("guaranteedMediaCoverage")}
+              <li>
+                <Link href="/terms_of_use" className="hover:underline">
+                  {t("terms_of_use")}
+                </Link>
               </li>
-              <li className="hover:text-gray-100 transition-colors duration-200">
-                {t("professionalContentWriting")}
+              <li>
+                <Link href="/refund_policy" className="hover:underline">
+                  {t("refund_policy")}
+                </Link>
               </li>
-              <li className="hover:text-gray-100 transition-colors duration-200">
-                {t("multilingualTranslation")}
-              </li>
-              <li className="hover:text-gray-100 transition-colors duration-200">
-                {t("seoOnlineVisibility")}
+              <li>
+                <Link href="/how_it_works" className="hover:underline">
+                  {t("how_it_works")}
+                </Link>
               </li>
             </ul>
           </div>

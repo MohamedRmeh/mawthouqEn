@@ -11,7 +11,9 @@
     "Login": "Login",
     "Sign Up": "Sign Up",
     "Dashboard": "Dashboard",
-    "Logout": "Logout"
+    "Logout": "Logout",
+    "socialMedia": "Social Media",
+    "Websites": "Websites"
   },
   "Hero": {
     "topTitle": "Guaranteed Publicity On",
@@ -113,7 +115,12 @@
     "seoOnlineVisibility": "SEO & Online Visibility Boost",
     "followUs": "Follow Us",
     "stayConnected": "Stay connected with us on social media:",
-    "allRightsReserved": "All rights reserved."
+    "allRightsReserved": "All rights reserved.",
+    "more_info": "More Information",
+    "privacy_policy": "Privacy Policy",
+    "terms_of_use": "Terms of Use",
+    "refund_policy": "Refund Policy",
+    "how_it_works": "How does the platform work?"
   },
   "About": {
     "aboutTitle": "About Mowthoq Post",
@@ -210,7 +217,8 @@
     "login": "Login",
     "email": "Email",
     "password": "Password",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "resetPassword": "Reset Password"
   },
   "Register": {
     "register": "Sign Up",
@@ -244,7 +252,14 @@
     "proceed_to_checkout": "Proceed to Checkout",
     "lastType": "Publish your articles and expand your audience on a trusted platform.",
     "lang": "Language",
-    "website_category": "Website Category"
+    "website_category": "Website Category",
+    "aboutAccount": "About the website",
+    "noDescription": "No description provided.",
+    "ratings": "Ratings",
+    "publishSpeed": "Publish Speed",
+    "quality": "Quality",
+    "engagement": "Engagement & Commitment",
+    "finalScore": "Final Score"
   },
   "checkoutModal": {
     "confirm_your_checkout": "Confirm Your Checkout",
@@ -252,5 +267,200 @@
     "upload_file": "Upload File",
     "processing": "Processing",
     "continue_to_payment": "Continue to Payment"
+  },
+  "socialMedia": {
+    "topTitle": "Top Social Platforms 🚀",
+    "mainTitle": "Discover top social media accounts for your marketing campaigns.",
+
+    "filters": {
+      "category": "Category",
+      "all": "All",
+      "cat": {
+        "food": "Food",
+        "tech": "Tech",
+        "fashion": "Fashion",
+        "education": "Education",
+        "travel": "Travel",
+        "fitness": "Fitness"
+      },
+      "postDuration": "Number of publishing days",
+      "postDurationPlaceholder": "e.g. 7"
+    }
+  },
+
+  "Verify": {
+    "enter-code": "Enter the verification code",
+    "verification-code": "Verification Code (e.g., 123456)",
+    "verify": "Verify",
+    "verifying": "Verifying..."
+  },
+  "RecommendedSocial": {
+    "topContent": "Recommended Similar Accounts",
+    "loading": "Loading...",
+    "noResults": "No similar Accounts found."
+  },
+  "socialAccountPage": {
+    "loading": "Loading...",
+    "errorLoading": "Failed to load data.",
+    "followers": "Followers",
+    "contentType": "Content Type",
+    "days": "days",
+    "publishingTime": "Publishing Time",
+    "verified": "Verified",
+    "notVerifiedSymbol": "✖️",
+    "verifiedSymbol": "✔️",
+    "aboutAccount": "About this account",
+    "noDescription": "No description available.",
+    "ratings": "Ratings",
+    "publishSpeed": "Publish Speed",
+    "quality": "Quality",
+    "engagement": "Engagement",
+    "finalScore": "Final Score",
+    "promoteWithCreator": "Promote your brand with a top-rated content creator in",
+    "onPlatform": "on",
+    "noImage": "No Image",
+    "profileLink": "Profile link"
+  },
+  "checkoutSocial": {
+    "checkout": "Checkout",
+    "post_price": "Post Price",
+    "video_price": "Video Price",
+    "reel_price": "Reel Price",
+    "story_price": "Story Price",
+    "total": "Total",
+    "proceed_to_checkout": "Proceed to Checkout",
+    "language": "Language",
+    "social_category": "Social Category",
+    "alert_select_type": "⚠️ You must select a content type (video, reel, or post) before continuing.",
+    "alert_login_required": "⚠️ You must be logged in to proceed.",
+    "confirm_checkout_message": "Are you sure you want to proceed with the purchase?",
+    "yes": "Yes",
+    "cancel": "Cancel"
+  },
+  "resetPassword": {
+    "title": "Reset Password",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "Enter your email address",
+    "submit": "Send Reset Link",
+    "submitting": "Submitting...",
+    "unexpectedError": "An unexpected error occurred"
+  },
+  "check-email": {
+    "title": "Verify your email",
+    "email": "Email",
+    "new_password": "New Password",
+    "confirm_password": "Confirm Password",
+    "submit": "Reset Password",
+    "submitting": "Submitting...",
+    "missing_token_or_email": "Email or token is missing.",
+    "passwords_not_match": "Passwords do not match.",
+    "password_reset_success": "Password reset successfully!",
+    "password_reset_error": "An error occurred while resetting the password."
+  },
+  "privacy_policy": {
+    "title": "Privacy Policy",
+    "intro": "At <strong>mawthoqpost</strong>, we value your privacy and are committed to protecting your personal data when using our platform. This policy explains how we collect, use, and share your information.",
+    "info_title": "1. Information We Collect",
+    "info_item_1": "Account information: such as name, email, and contact details.",
+    "info_item_2": "Request content: details of content you wish to publish or promote.",
+    "info_item_3": "Payment information: processed via secure gateways; we do not store card data directly.",
+    "info_item_4": "Usage data: such as visit history, pages viewed, and device/browser type.",
+
+    "use_title": "2. How We Use Information",
+    "use_intro": "We use the collected information to:",
+    "use_item_1": "Provide and improve our services, including content publishing and promotion.",
+    "use_item_2": "Communicate with you regarding orders or support.",
+    "use_item_3": "Analyze performance and enhance user experience.",
+    "use_item_4": "Comply with legal and regulatory requirements.",
+
+    "share_title": "3. Information Sharing",
+    "share_intro": "We may share some of your information with:",
+    "share_item_1": "Media partners or social platforms to deliver requested services.",
+    "share_item_2": "Technical service providers (e.g., analytics or payment tools).",
+    "share_item_3": "Upon legal request or when necessary to protect our rights.",
+
+    "security_title": "4. Data Security",
+    "security_text": "We follow strict security procedures to protect your data from unauthorized access, alteration, or deletion.",
+
+    "cookies_title": "5. Cookies",
+    "cookies_text": "We use cookies to enhance performance and personalize content. You can modify your browser settings to disable them.",
+
+    "rights_title": "6. Your Rights",
+    "rights_text": "You have the right to access, correct, or delete your data. You may contact us for modifications or inquiries.",
+
+    "contact_title": "7. Contact Us",
+    "contact_text": "If you have any questions about this privacy policy, you can contact us via email:",
+
+    "updated": "This policy was last updated on June 25, 2025."
+  },
+  "terms_of_use": {
+    "terms_of_use_title": "Terms of Use",
+    "terms_of_use_intro": "Welcome to <strong>mawthoqpost</strong>. By using our platform, you agree to the following terms. Please read them carefully.",
+    "terms_of_use_section_1_title": "1. Acceptance of Terms",
+    "terms_of_use_section_1_content": "By using our website or services, whether as a visitor or a registered user, you agree to these Terms of Use and our Privacy Policy.",
+    "terms_of_use_section_2_title": "2. Description of Service",
+    "terms_of_use_section_2_content": "<strong>mawthoqpost</strong> is a platform that allows users to publish informational or promotional content on selected websites or social media platforms for a set fee.",
+    "terms_of_use_section_3_title": "3. Acceptable Use",
+    "terms_of_use_section_3_content": "<ul><li>It is prohibited to use the platform for illegal, misleading, or abusive content.</li><li>Content must comply with the policies of the publishing sites.</li><li>Misusing the system for sending spam is not allowed.</li></ul>",
+    "terms_of_use_section_4_title": "4. Intellectual Property",
+    "terms_of_use_section_4_content": "All copyrights, trademarks, and displayed content belong to <strong>mawthoqpost</strong> or its partners and may not be reused without explicit permission.",
+    "terms_of_use_section_5_title": "5. Liability",
+    "terms_of_use_section_5_content": "We are not responsible for any content published at the user’s request. Full responsibility lies with the user who submitted the request or content.",
+    "terms_of_use_section_6_title": "6. Changes to Terms",
+    "terms_of_use_section_6_content": "We reserve the right to change these terms at any time. Users will be notified of changes via email or through the platform.",
+    "terms_of_use_section_7_title": "7. Account Termination",
+    "terms_of_use_section_7_content": "We reserve the right to suspend or terminate your account in case of violation of any terms without prior notice.",
+    "terms_of_use_section_8_title": "8. Governing Law",
+    "terms_of_use_section_8_content": "These terms are governed and interpreted in accordance with the laws applicable in the country where the platform is operated.",
+    "terms_of_use_section_9_title": "9. Contact Us",
+    "terms_of_use_section_9_content": "For any inquiries regarding the Terms of Use, you may contact us at: <a>legal@mawthoqpost.com</a>",
+    "terms_of_use_last_updated": "Last updated on June 25, 2025."
+  },
+  "refund_policy": {
+    "refund_policy_title": "Refund Policy",
+    "refund_policy_intro": "At <strong>mawthoqpost</strong>, we strive to provide high-quality service that satisfies our clients. However, we understand that there may be situations requiring a refund. This policy outlines the conditions and procedures related to that.",
+
+    "refund_policy_section_1_title": "1. Eligibility for Refund",
+    "refund_policy_section_1_content": "<ul><li>You are entitled to a refund if the agreed-upon service is not delivered within the specified time frame.</li><li>If the content is rejected by the publishing platform before publication, you may request a full refund.</li><li>No refunds are allowed after the service has been delivered (e.g., article or ad publication).</li></ul>",
+
+    "refund_policy_section_2_title": "2. Refund Request Procedure",
+    "refund_policy_section_2_content": "<ol><li>Please contact us within 7 days of payment using the email provided below.</li><li>You must explain the reason for the refund and attach the order or invoice number.</li><li>We will review your request and respond within 3 to 5 business days.</li></ol>",
+
+    "refund_policy_section_3_title": "3. Refund Method",
+    "refund_policy_section_3_content": "If your request is approved, the refund will be issued to the same payment method used. Please note that the processing may take 5 to 10 business days depending on your financial provider.",
+
+    "refund_policy_section_4_title": "4. Exceptions",
+    "refund_policy_section_4_content": "<ul><li>Refunds are not available for fully completed custom services.</li><li>Requests that violate the Terms of Use or include content rejected by publishers will not be refunded.</li></ul>",
+
+    "refund_policy_section_5_title": "5. Contact Us",
+    "refund_policy_section_5_content": "If you would like to request a refund or have any inquiries, you can contact us at: <a>refund@mawthoqpost.com</a>",
+
+    "refund_policy_last_updated": "Last updated on June 25, 2025."
+  },
+  "how_it_works": {
+    "how_it_works_title": "How does the mawthoqpost platform work?",
+    "how_it_works_intro": "<strong>mawthoqpost</strong> offers a simple and effective way to publish media and advertising content on trusted websites or through social media, in just a few clear steps.",
+
+    "how_it_works_step_1_title": "1. Register or Log In",
+    "how_it_works_step_1_desc": "Create a new account or log in to your existing one to start using the platform and benefit from the available services.",
+
+    "how_it_works_step_2_title": "2. Choose the Service Type",
+    "how_it_works_step_2_desc": "Decide whether you want to publish an article on news websites, an ad on social media, or both.",
+
+    "how_it_works_step_3_title": "3. Select Platform or Channel",
+    "how_it_works_step_3_desc": "Browse the list of media platforms or social influencers, and choose what suits your business field and target audience.",
+
+    "how_it_works_step_4_title": "4. Submit Content or Request Writing",
+    "how_it_works_step_4_desc": "You can upload the content you want to publish, or request our help in writing it professionally and attractively.",
+
+    "how_it_works_step_5_title": "5. Confirm & Pay",
+    "how_it_works_step_5_desc": "After reviewing the details, confirm your request and make the payment using the secure methods available on the platform.",
+
+    "how_it_works_step_6_title": "6. Publish & Track",
+    "how_it_works_step_6_desc": "The content will be published within the agreed time, and you’ll receive links or reports showing the campaign performance.",
+
+    "how_it_works_cta_title": "Ready to get started?",
+    "how_it_works_cta_desc": "Start reaching the right audience now through our network of publishers and creators.",
+    "how_it_works_cta_button": "Get Started"
   }
 }

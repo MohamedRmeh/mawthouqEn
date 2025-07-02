@@ -6,7 +6,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import Navbar from "@/components/navigation/Navbar";
 import Footer from "@/components/navigation/Footer";
-import AOSProvider from "@/components/AOSProvider";
+import AOSProvider from "@/components/lib/AOSProvider";
 import "../globals.css";
 
 const inter = Inter({

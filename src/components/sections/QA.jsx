@@ -1,40 +1,22 @@
 "use client";
 import React, { useState, useRef } from "react";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
-import { useTranslations, useLocale } from "next-intl";
+import { useLocale } from "next-intl";
 
-const faqs = [
-  {
-    questionKey: "faq1_question",
-    answerKey: "faq1_answer",
-  },
-  {
-    questionKey: "faq2_question",
-    answerKey: "faq2_answer",
-  },
-  {
-    questionKey: "faq3_question",
-    answerKey: "faq3_answer",
-  },
-  {
-    questionKey: "faq4_question",
-    answerKey: "faq4_answer",
-  },
-  {
-    questionKey: "faq5_question",
-    answerKey: "faq5_answer",
-  },
-];
-
-const QA = () => {
+const QA = ({ texts }) => {
   const [openIndex, setOpenIndex] = useState(null);
   const contentRefs = useRef([]);
-  const t = useTranslations("QA");
-  const lang = useLocale() === "en" ? true : false;
+  const lang = useLocale() === "en";
 
   const toggleQuestion = (index) => {
     setOpenIndex(index === openIndex ? null : index);
   };
+
+  // توليد الأسئلة والأجوبة ديناميكيًا
+  const faqs = Array.from({ length: 5 }, (_, i) => ({
+    question: texts[`faq${i + 1}_question`],
+    answer: texts[`faq${i + 1}_answer`],
+  }));
 
   return (
     <section className="mt-26 px-3 md:px-26 mb-36">
@@ -44,11 +26,11 @@ const QA = () => {
           data-aos={lang ? "fade-right" : "fade-left"}
         >
           <h1 className="text-3xl md:text-5xl font-bold text-slate-800 mb-4 relative inline-block w-fit">
-            <span className="relative z-10 text-[#21275c]">{t("title")}</span>
+            <span className="relative z-10 text-[#21275c]">{texts?.title}</span>
             <span className="absolute left-0 bottom-1 h-2 w-full bg-gradient-to-r from-[#035E89] via-[#0494C4] to-[#21275C] opacity-40 rounded-lg -z-10"></span>
           </h1>
           <p className="text-base md:text-xl text-gray-500 leading-relaxed">
-            {t("description")}
+            {texts?.description}
           </p>
         </div>
 
@@ -65,7 +47,7 @@ const QA = () => {
                 onClick={() => toggleQuestion(index)}
               >
                 <h2 className="text-sm md:text-lg font-semibold text-slate-700 select-none">
-                  {t(faq.questionKey)}
+                  {faq?.question}
                 </h2>
                 {openIndex === index ? (
                   <AiOutlineMinus className="w-6 h-6 text-[#035E89]" />
@@ -84,7 +66,7 @@ const QA = () => {
                 }}
               >
                 <div className="mt-1.5 text-gray-600 text-sm md:text-base">
-                  {t(faq.answerKey)}
+                  {faq?.answer}
                 </div>
               </div>
             </div>

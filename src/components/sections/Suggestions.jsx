@@ -1,14 +1,13 @@
 "use client";
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { FaMedium, FaWordpress, FaBlogger, FaLink } from "react-icons/fa";
-import { useTranslations } from "next-intl";
+import { FaLink } from "react-icons/fa";
 
 const platforms = [
-  { name: "Medium", icon: <FaMedium className="text-[#00ab6c]" /> },
-  { name: "WordPress", icon: <FaWordpress className="text-blue-600" /> },
-  { name: "Blogger", icon: <FaBlogger className="text-orange-500" /> },
-  { name: "Other Websites", icon: <FaLink className="text-gray-500" /> },
+  { name: "Alam Al Mal", icon: <FaLink className="text-green-700" /> },
+  { name: "Al Iqtissadi", icon: <FaLink className="text-blue-600" /> },
+  { name: "Al Arabiya Net", icon: <FaLink className="text-red-600" /> },
+  { name: "Al Bayan", icon: <FaLink className="text-yellow-500" /> },
 ];
 
 const itemVariants = {
@@ -24,11 +23,10 @@ const itemVariants = {
   }),
 };
 
-const Suggestions = () => {
+const Suggestions = ({ texts }) => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: false, margin: "-100px" });
-  const t = useTranslations("Suggestions");
-
+  const t = texts;
   return (
     <section ref={sectionRef} className="mt-20 px-4">
       <div className="text-center mb-10">
@@ -38,7 +36,7 @@ const Suggestions = () => {
           transition={{ duration: 0.6 }}
           className="text-2xl md:text-3xl font-bold text-[#21275c]"
         >
-          {t("topTitle")}
+          {t?.topTitle}
         </motion.h2>
         <motion.p
           initial={{ opacity: 0 }}
@@ -46,7 +44,7 @@ const Suggestions = () => {
           transition={{ delay: 0.3, duration: 0.5 }}
           className="text-slate-500 mt-1"
         >
-          {t("mainTitle")}
+          {t?.mainTitle}
         </motion.p>
       </div>
 

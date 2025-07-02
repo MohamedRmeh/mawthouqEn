@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
-import FilterSide from "@/components/marketPlace/FilterSide";
+import FilterSide from "@/components/navigation/marketPlace/FilterSide";
 import { useTranslations, useLocale } from "next-intl";
-import Card from "@/components/marketPlace/Card";
+import Card from "@/components/navigation/marketPlace/Card";
 import axios from "axios";
 
 const Page = () => {
@@ -31,7 +31,6 @@ const Page = () => {
       process.env.NEXT_PUBLIC_API_URL
     }/websites?${params.toString()}`;
     setPageUrl(newUrl);
-    console.log("Current Filter URL:", newUrl);
   }, [filterForm]);
 
   useEffect(() => {

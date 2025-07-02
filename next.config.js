@@ -14,9 +14,9 @@ const nextConfig = {
         hostname: "*",
       },
          {
-        protocol: "http", // أضف هذا السطر
-        hostname: "127.0.0.1", // للسماح بتحميل الصور من الـ localhost
-        port: "8000", // يمكنك حذفه إن لم يكن ثابتًا
+        protocol: "http",
+        hostname: "127.0.0.1", 
+        port: "8000", 
       },
     ],
   },

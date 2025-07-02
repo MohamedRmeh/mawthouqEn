@@ -1,9 +1,9 @@
 import React from "react";
-import { useTranslations, useLocale } from "next-intl";
+import { useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 
-const Boost = () => {
-  const t = useTranslations("Boost");
+const Boost = ({ texts }) => {
+  const t = texts;
   const lang = useLocale() === "en" ? true : false;
 
   return (
@@ -15,10 +15,13 @@ const Boost = () => {
       >
         {/* Left Content */}
         <div className="text-white space-y-4 lg:space-y-5">
-          <h2 className="text-xl md:text-4xl font-bold">{t("title")}</h2>
-          <p className="text-sm md:text-xl">{t("subtitle")}</p>
-          <Link href="/marketplace" className="bg-gradient-to-b from-[#0056f0] to-[#0040c0] text-white px-6 sm:px-15 py-3 rounded-md font-semibold text-sm lg:text-base uppercase shadow-md hover:brightness-110 transition-all duration-300 tracking-[0.5px]">
-            {t("button")}
+          <h2 className="text-xl md:text-4xl font-bold">{t?.title}</h2>
+          <p className="text-sm md:text-xl">{t?.subtitle}</p>
+          <Link
+            href="/marketplace"
+            className="bg-gradient-to-b from-[#0056f0] to-[#0040c0] text-white px-6 sm:px-15 py-3 rounded-md font-semibold text-sm lg:text-base uppercase shadow-md hover:brightness-110 transition-all duration-300 tracking-[0.5px]"
+          >
+            {t?.button}
           </Link>
         </div>
 

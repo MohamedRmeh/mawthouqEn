@@ -2,6 +2,8 @@ import React, { useRef, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import axios from "axios";
 import Cookies from "js-cookie";
+import Link from "next/link";
+import VerifyCodeModal from "./VerifyCodeModal";
 
 const LoginModal = ({ isOpen, onClose, setRedictUrl }) => {
   const t = useTranslations("Login");
@@ -14,6 +16,18 @@ const LoginModal = ({ isOpen, onClose, setRedictUrl }) => {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [showVerifyModal, setShowVerifyModal] = useState(false);
+  const [userId, setUserId] = useState(null); // أو email إذا كنت تستعمله
+
+  // هذا الجديد:
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => {
+        setError("");
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [error]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -60,16 +74,31 @@ const LoginModal = ({ isOpen, onClose, setRedictUrl }) => {
       }
 
       onClose();
-
-      // إذا تحب إعادة التوجيه مباشرة:
-      // if (redirect_url) window.location.href = redirect_url;
     } catch (err) {
-      console.log(err);
-      setError(err?.response?.data?.error || "An error occurred during login.");
+
+      const errorMessage = err?.response?.data?.message;
+      setError(errorMessage);
+
+      if (err?.response?.data?.resend === true) {
+        setUserId(err?.response?.data?.user_id); // أو استخدم email بدلاً من user_id إذا كان هذا ما تستخدمه
+        setShowVerifyModal(true);
+      }
     } finally {
       setLoading(false);
     }
   };
+
+  if (showVerifyModal) {
+    return (
+      <VerifyCodeModal
+        userId={userId}
+        onClose={() => setShowVerifyModal(false)}
+        onOpenLoginModal={() => {
+          setShowVerifyModal(false);
+        }}
+      />
+    );
+  }
 
   if (!isOpen) return null;
 
@@ -109,6 +138,13 @@ const LoginModal = ({ isOpen, onClose, setRedictUrl }) => {
             className="border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
             required
           />
+          <Link
+            onClick={onClose}
+            href="/reset-password"
+            className="text-[15px] text-blue-600 font-medium underline"
+          >
+            {t("resetPassword")}
+          </Link>
           {error && <p className="text-red-500 text-center">{error}</p>}
 
           <button

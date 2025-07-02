@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import { useTranslations, useLocale } from "next-intl";
 
 import {
   FaRocket,
@@ -9,35 +8,35 @@ import {
   FaChartBar,
   FaFileAlt,
 } from "react-icons/fa";
+import { useLocale } from "next-intl";
 
-const Categories = () => {
-  const t = useTranslations("Categories");
+const Categories = ({ texts }) => {
   const lang = useLocale() === "en";
 
   const categories = [
     {
       icon: <FaRocket className="text-blue-600 md:text-5xl text-3xl" />,
-      name: t("items.0"),
+      name: texts?.items[0],
       href: "/",
     },
     {
       icon: <FaHospitalAlt className="text-blue-600 md:text-5xl text-3xl" />,
-      name: t("items.1"),
+      name: texts?.items[1],
       href: "/",
     },
     {
       icon: <FaLightbulb className="text-blue-600 md:text-5xl text-3xl" />,
-      name: t("items.2"),
+      name: texts?.items[2],
       href: "/",
     },
     {
       icon: <FaChartBar className="text-blue-600 md:text-5xl text-3xl" />,
-      name: t("items.3"),
+      name: texts?.items[3],
       href: "/",
     },
     {
       icon: <FaFileAlt className="text-blue-600 md:text-5xl text-3xl" />,
-      name: t("items.4"),
+      name: texts?.items[4],
       href: "/",
     },
   ];
@@ -53,14 +52,14 @@ const Categories = () => {
             >
               <span className="block w-28 h-[9px] bg-blue-600"></span>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#21275c] leading-tight">
-                {t("title")}
+                {texts?.title}
               </h1>
             </div>
             <p
               data-aos={lang ? "fade-left" : "fade-right"}
               className="text-base sm:text-lg md:text-xl text-slate-700"
             >
-              {t("description")}
+              {texts?.description}
             </p>
           </div>
 

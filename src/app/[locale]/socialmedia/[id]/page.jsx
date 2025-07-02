@@ -1,39 +1,38 @@
 "use client";
-import { useParams } from "next/navigation";
+
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import axios from "axios";
-import CheckoutSection from "@/components/navigation/marketPlace/CheckoutSection";
-import Recommended from "@/components/navigation/marketPlace/Recommended";
-import { Inter } from "next/font/google";
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+import RecomSocialMedia from "@/components/socialmedia/RecomSocialMedia";
 import { useTranslations, useLocale } from "next-intl";
-
-const inter = Inter({ subsets: ["latin"] });
+import CheckoutSocial from "@/components/socialmedia/CheckoutSocial";
 
 const Page = () => {
-  const lang = useLocale();
-  const t = useTranslations("checkout");
   const { id } = useParams();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const t = useTranslations("socialAccountPage");
+  const lang = useLocale();
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchSocialAccount = async () => {
       try {
-        const res = await axios.get(`${apiUrl}/websites/${id}`);
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/social-accounts/${id}`
+        );
         setData(res.data);
       } catch (error) {
-        console.error("Error fetching website data:", error);
+        console.log(error)
+        console.error("Error fetching data:", error);
       } finally {
         setLoading(false);
       }
     };
 
     if (id) {
-      fetchData();
+      fetchSocialAccount();
     }
   }, [id]);
 
@@ -46,7 +45,7 @@ const Page = () => {
             <div className="h-5 bg-gray-200 rounded w-2/3" />
 
             <div className="flex flex-col md:flex-row items-center gap-8 bg-white rounded-2xl p-5 border border-gray-200">
-              <div className="w-full max-w-[320px] h-[200px] bg-gray-300 rounded-xl" />
+              <div className="w-40 h-40 bg-gray-300 rounded-full object-contain shadow-md text-white flex justify-center items-center" />
               <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-gray-300 to-transparent md:h-[200px] md:w-px md:bg-gradient-to-b hidden md:block" />
               <div className="flex flex-col gap-3 text-sm md:text-base text-center md:text-left w-full">
                 <div className="bg-gray-200 h-4 rounded w-2/3 mx-auto md:mx-0" />
@@ -65,84 +64,92 @@ const Page = () => {
     );
   }
 
-  if (!data) {
-    return (
-      <div className="text-red-600 text-center mt-10">
-        Failed to load website data.
-      </div>
-    );
-  }
-
   return (
-    <section className={`w-full px-4 md:px-20 mt-14 mb-20`}>
+    <section className="w-full px-4 md:px-20 mt-14 mb-20">
       <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-10">
         {/* Main Content */}
         <div className="flex flex-col gap-10 md:col-span-2">
           <div className="flex flex-col gap-3">
             <h1 className="text-2xl md:text-4xl text-[#21275c] font-bold leading-snug capitalize max-w-[95%]">
-              {t.rich("featuredText", {
-                name: () => <span className="text-blue-700">{data.name}</span>,
-                category: () => (
-                  <span className="text-blue-700">{data.category}</span>
-                ),
-              })}
+              {data.account_name} / @{data.username}
             </h1>
 
             <p className="text-slate-600 text-base md:text-lg">
-              {t.rich("boostText", {
-                name: () => <span className="text-blue-700">{data.name}</span>,
-              })}
+              {t("promoteWithCreator")}{" "}
+              <span className="text-blue-700 font-semibold">
+                {data.category}
+              </span>{" "}
+              {t("onPlatform")}{" "}
+              <span className="text-blue-700 font-semibold">
+                {data.platform}
+              </span>
             </p>
           </div>
 
           <div className="flex flex-col md:flex-row items-center gap-8 bg-white rounded-2xl p-5 border border-gray-200">
-            <Image
-              width={320}
-              height={320}
-              src={data?.image || "/images/testImg.jpeg"}
-              alt={data.name}
-              className="rounded-xl object-contain shadow-md w-full max-w-[320px] h-45"
-            />
+            {data.account_image ? (
+              <Image
+                width={320}
+                height={320}
+                src={data?.account_image}
+                alt={data?.account_name}
+                className="object-contain shadow-md w-40 h-40 rounded-full text-white flex justify-center items-center"
+              />
+            ) : (
+              <div className="bg-slate-400 w-40 h-40 rounded-full text-white flex justify-center items-center">
+                {t("noImage")}
+              </div>
+            )}
             <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-gray-300 to-transparent md:h-[200px] md:w-px md:bg-gradient-to-b hidden md:block" />
             <div
               className={`flex flex-col gap-3 text-gray-800 text-sm md:text-base text-center ${
                 lang === "en" ? "md:text-left" : "md:text-right"
-              }`}
+              } `}
             >
               <Link
-                href={data.url}
+                href={data?.profile_url || ""}
                 target="_blank"
                 className="text-blue-600 underline font-semibold hover:text-blue-800 transition"
               >
-                {data.url}
+                {t("profileLink")}
               </Link>
-              <span className="font-medium">
-                {t("contentType")}:{""}{" "}
-                {t(`${data.content_type.toLowerCase()}`)}
-              </span>{" "}
+
               <span>
-                {t("publishedWithin")}
-                <span className="bg-gray-100 px-2 py-0.5 rounded text-sm font-medium text-gray-700">
-                  {data.avg_publish_time} {t("businessDays")}
+                {t("followers")}: {""}
+                <span className="ml-1 bg-gray-100 px-2 py-0.5 rounded text-sm font-medium text-gray-700">
+                  {data.followers_count.toLocaleString()}
                 </span>
               </span>
-              {data?.views && (
-                <span>
-                  {t("estimatedViews")} :{" "}
-                  <span className="bg-gray-100 px-2 py-0.5 rounded text-sm font-medium text-gray-700">
-                    {data?.views.toLocaleString()}
-                  </span>
+
+              <span>
+                {t("contentType")}: {""}
+                <span className="ml-1 text-blue-700 font-semibold capitalize">
+                  {data.accepted_content_types.join(", ")}
                 </span>
-              )}
+              </span>
+
+              <span>
+                {t("publishingTime")}: {""}
+                <span className="ml-1 bg-gray-100 px-2 py-0.5 rounded text-sm font-medium text-gray-700">
+                  {data.post_duration_days} {t("days")}
+                </span>
+              </span>
+
+              <span>
+                {t("verified")}: {""}
+                {data.is_verified ? (
+                  <span className="ml-1 text-green-600 font-semibold">
+                    {t("verifiedSymbol")}
+                  </span>
+                ) : (
+                  <span className="ml-1 text-red-600">
+                    {t("notVerifiedSymbol")}
+                  </span>
+                )}
+              </span>
             </div>
           </div>
 
-          <div className="text-base md:text-lg leading-relaxed text-gray-700">
-            <p className="leading-relaxed mb-5 font-semibold text-gray-700">
-              {t("lastType")}
-            </p>
-            <p className="mb-5">{data.description}</p>
-          </div>
           <div className="text-base md:text-lg leading-relaxed text-gray-700">
             <p className="leading-relaxed mb-5 font-semibold text-gray-700">
               {t("aboutAccount")}
@@ -169,11 +176,11 @@ const Page = () => {
         </div>
 
         {/* Checkout Section */}
-        <CheckoutSection websiteData={data} />
+        <CheckoutSocial socialData={data} />
       </div>
 
       {/* Recommended */}
-      <Recommended id={id} />
+      <RecomSocialMedia id={data.id} />
     </section>
   );
 };
