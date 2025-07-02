@@ -2,12 +2,17 @@ import { notFound } from "next/navigation";
 import { Inter, Almarai } from "next/font/google";
 import { clsx } from "clsx";
 import { NextIntlClientProvider } from "next-intl";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import {
+  getTranslations,
+  setRequestLocale,
+  getMessages,
+} from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import Navbar from "@/components/navigation/Navbar";
 import Footer from "@/components/navigation/Footer";
 import AOSProvider from "@/components/lib/AOSProvider";
 import "../globals.css";
+import React, { Suspense } from "react";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -43,6 +48,7 @@ export default async function LocaleLayout(props) {
   }
 
   setRequestLocale(locale);
+  const messages = await getMessages({ locale });
 
   const isArabic = locale === "ar";
 
@@ -54,8 +60,10 @@ export default async function LocaleLayout(props) {
           "flex flex-col min-h-screen"
         )}
       >
-        <NextIntlClientProvider locale={locale}>
-          <Navbar />
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Navbar />
+          </Suspense>
           <main className="antialiased relative flex-1 overflow-hidden">
             <AOSProvider>{children}</AOSProvider>
           </main>

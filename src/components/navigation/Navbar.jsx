@@ -57,11 +57,11 @@ const Navbar = () => {
   useEffect(() => {
     const ref = searchParams.get("ref");
     const token = Cookies.get("token");
-
+    console.log(ref);
     if (ref && !token) {
       setSignupOpen(true);
     }
-  }, [searchParams]);
+  }, []);
 
   const toggleLocale = () => {
     const newLocale = pathname.startsWith("/en") ? "ar" : "en";

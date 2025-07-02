@@ -1,3 +1,4 @@
+'use client'
 import React, { useRef, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import axios from "axios";
