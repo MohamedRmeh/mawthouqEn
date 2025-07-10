@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import {
   FaFacebookF,
   FaTwitter,
@@ -11,7 +11,8 @@ import { useTranslations, useLocale } from "next-intl";
 
 const Footer = () => {
   const t = useTranslations("Footer");
-  const lang = useLocale() === "en" ? true : false;
+  const locale = useLocale();
+  const lang = locale === "en";
 
   return (
     <footer className="bg-[#21275c] text-white py-10">
@@ -19,7 +20,7 @@ const Footer = () => {
         <div
           className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-x-10 gap-y-8 text-center ${
             lang ? "sm:text-left" : "sm:text-right"
-          } `}
+          }`}
         >
           {/* وصف الموقع */}
           <div className="space-y-4 lg:col-span-2">
@@ -37,22 +38,34 @@ const Footer = () => {
             <h3 className="text-lg font-semibold">{t("quickLinks")}</h3>
             <ul className="space-y-2 text-sm text-gray-200">
               <li>
-                <Link href="/" className="hover:underline">
+                <Link
+                  href={{ pathname: "/", locale }}
+                  className="hover:underline"
+                >
                   {t("home")}
                 </Link>
               </li>
               <li>
-                <Link href="/marketplace" className="hover:underline">
+                <Link
+                  href={{ pathname: "/marketplace", locale }}
+                  className="hover:underline"
+                >
                   {t("marketplace")}
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:underline">
+                <Link
+                  href={{ pathname: "/about", locale }}
+                  className="hover:underline"
+                >
                   {t("aboutUs")}
                 </Link>
               </li>
               <li>
-                <Link href="/support" className="hover:underline">
+                <Link
+                  href={{ pathname: "/support", locale }}
+                  className="hover:underline"
+                >
                   {t("helpSupport")}
                 </Link>
               </li>
@@ -64,22 +77,34 @@ const Footer = () => {
             <h3 className="text-lg font-semibold">{t("more_info")}</h3>
             <ul className="space-y-2 text-sm text-gray-200">
               <li>
-                <Link href="/privacy_policy" className="hover:underline">
+                <Link
+                  href={{ pathname: "/privacy_policy", locale }}
+                  className="hover:underline"
+                >
                   {t("privacy_policy")}
                 </Link>
               </li>
               <li>
-                <Link href="/terms_of_use" className="hover:underline">
+                <Link
+                  href={{ pathname: "/terms_of_use", locale }}
+                  className="hover:underline"
+                >
                   {t("terms_of_use")}
                 </Link>
               </li>
               <li>
-                <Link href="/refund_policy" className="hover:underline">
+                <Link
+                  href={{ pathname: "/refund_policy", locale }}
+                  className="hover:underline"
+                >
                   {t("refund_policy")}
                 </Link>
               </li>
               <li>
-                <Link href="/how_it_works" className="hover:underline">
+                <Link
+                  href={{ pathname: "/how_it_works", locale }}
+                  className="hover:underline"
+                >
                   {t("how_it_works")}
                 </Link>
               </li>

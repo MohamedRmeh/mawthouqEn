@@ -119,7 +119,7 @@ const CardSocial = ({ data, loading, error, onPageChange }) => {
               {(site.engagement_rate === null
                 ? 0
                 : site.engagement_rate
-              ).toFixed(1)}
+              )?.toFixed(1)}
               %
             </div>
           </div>

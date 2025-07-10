@@ -52,7 +52,7 @@ const Suggestions = ({ texts }) => {
         {platforms.map((platform, index) => (
           <motion.div
             key={platform.name}
-            className="flex flex-col items-center justify-center p-6 rounded-2xl shadow-sm bg-white hover:scale-105 transition-transform duration-300 cursor-pointer border border-slate-300"
+            className="flex flex-col items-center justify-center p-6 rounded-2xl shadow-sm bg-white hover:scale-105 transition-transform duration-300 border border-slate-300"
             custom={index}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
