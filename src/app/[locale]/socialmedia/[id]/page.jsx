@@ -154,23 +154,22 @@ const Page = () => {
             <p className="leading-relaxed mb-5 font-semibold text-gray-700">
               {t("aboutAccount")}
             </p>
-            <p className="mb-5">{data.notes || t("noDescription")}</p>
+            <p className="mb-5">{data?.notes || t("noDescription")}</p>
 
             <p className="font-semibold mb-2">{t("ratings")}</p>
-            <ul className={` ${lang === "en" ? "ml-4" : "mr-4"}  list-disc`}>
-              <li>
-                {t("publishSpeed")}: {data.ratings_summary.publish_speed || "0"}
-              </li>
-              <li>
-                {t("quality")}: {data.ratings_summary.quality || "0"}
-              </li>
-              <li>
-                {t("engagement")}:{" "}
-                {data.ratings_summary.engagement_commitment || "0"}
-              </li>
-              <li>
-                {t("finalScore")}: {data.ratings_summary.final_score || "0"}
-              </li>
+            <ul className={` ${lang === "en" ? "ml-" : "mr-"}  list-disc`}>
+              <li className="flex items-center gap-2">
+  {t("finalScore")}:
+  {data?.ratings_summary.final_score > 0 ? (
+    <span className="text-yellow-500 text-xl">
+      {"★".repeat(data?.ratings_summary.final_score)}
+      {"☆".repeat(5 - data?.ratings_summary.final_score)}
+    </span>
+  ) : (
+    <span className="text-gray-400 text-xl">{"☆☆☆☆☆"}</span>
+  )}
+</li>
+
             </ul>
           </div>
         </div>

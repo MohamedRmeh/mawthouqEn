@@ -1,13 +1,10 @@
 "use client";
-import Image from "next/image";
-import { FaCcPaypal, FaCcVisa, FaStripe } from "react-icons/fa";
 import React, { useState } from "react";
 import { useTranslations } from "next-intl";
 import CheckoutModalForm from "./CheckoutModal";
 
 const CheckoutSocial = ({ socialData }) => {
   const t = useTranslations("checkoutSocial");
-
   const commissionRate = 0.2;
   const extras = socialData?.extra_features || [];
   const acceptedTypes = socialData?.accepted_content_types || [];
@@ -32,7 +29,7 @@ const CheckoutSocial = ({ socialData }) => {
     post: parseFloat(socialData?.post_price || 0),
     video: parseFloat(socialData?.video_price || 0),
     reel: parseFloat(socialData?.reel_price || 0),
-    story: parseFloat(socialData?.reel_story || 0),
+    story: parseFloat(socialData?.story_price || 0),
   };
 
   const basePrice = selectedType ? prices[selectedType] || 0 : 0;
@@ -124,24 +121,6 @@ const CheckoutSocial = ({ socialData }) => {
           setAlertMessage={setAlertMessage}
         />
       )}
-
-      {/* Payment Icons */}
-      <div className="flex justify-between text-6xl text-[#21275c] cursor-pointer mt-4 px-10">
-        <FaCcPaypal title="PayPal" />
-        <FaCcVisa title="Visa" />
-        <FaStripe title="Stripe" />
-      </div>
-
-      {/* Account Image */}
-      <div className="flex items-center justify-center mt-10">
-        <Image
-          src="https://www.qtonix.com/images/Prose-Moneyback.jpg"
-          width={150}
-          height={100}
-          alt="money-back"
-          className="object-cover"
-        />
-      </div>
 
       {/* Account Info */}
       <div className="flex flex-col gap-5 mt-5">

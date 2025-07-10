@@ -9,10 +9,11 @@ import {
 } from "react-icons/si";
 import { FaTiktok, FaCheckCircle } from "react-icons/fa";
 import { useRouter } from "next/navigation";
+import { useLocale } from "next-intl";
 
 const CardSocial = ({ data, loading, error, onPageChange }) => {
   const router = useRouter();
-
+  const lang = useLocale()
   const platformIcons = {
     instagram: <SiInstagram className="text-pink-500 w-4 h-4" />,
     facebook: <SiFacebook className="text-blue-600 w-4 h-4" />,
@@ -73,12 +74,12 @@ const CardSocial = ({ data, loading, error, onPageChange }) => {
             onClick={() => router.push(`/socialmedia/${site.id}`)}
             key={site.id}
             className=" bg-white rounded-xl overflow-hidden border border-slate-200 flex flex-col items-center text-center p-6 shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer"
-            style={{ width: "100%", height: "260px" }}
+            style={{ width: "100%", height: "230px" }}
           >
             <div className="w-20 h-20 rounded-full bg-gray-100 flex items-center justify-center mb-4 overflow-hidden">
-              {site.account_image ? (
+              {site?.account_image ? (
                 <img
-                  src={site.account_image}
+                  src={site?.account_image}
                   className="w-full h-full object-cover"
                 />
               ) : (
@@ -96,7 +97,7 @@ const CardSocial = ({ data, loading, error, onPageChange }) => {
                 />
               )}
             </div>
-            <div className="flex items-center justify-center gap-1 text-gray-600 text-sm mb-2">
+            <div dir="ltr" className="flex items-center justify-center gap-1 text-gray-600 text-sm mb-2">
               {platformIcons[site.platform?.toLowerCase()] || (
                 <div className="text-gray-400">?</div>
               )}
@@ -111,16 +112,8 @@ const CardSocial = ({ data, loading, error, onPageChange }) => {
                 @{site.username}
               </a>
             </div>
-            <div className="text-sm text-gray-500 mb-2">
-              👥 {site.followers_count?.toLocaleString() || 0} Followers
-            </div>
-            <div className="bg-blue-50 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full mt-auto">
-              Engagement Rate:{" "}
-              {(site.engagement_rate === null
-                ? 0
-                : site.engagement_rate
-              )?.toFixed(1)}
-              %
+            <div className="text-sm text-gray-500">
+              👥 {site.followers_count?.toLocaleString() || 0} {lang === "en" ? "Followers" : "متابع"}
             </div>
           </div>
         ))}

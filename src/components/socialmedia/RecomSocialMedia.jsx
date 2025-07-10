@@ -72,11 +72,11 @@ const RecomSocialMedia = ({ id }) => {
               key={account.id}
               onClick={() => router.push(`/socialmedia/${account.id}`)}
               className="bg-white rounded-xl overflow-hidden border border-slate-200 flex flex-col items-center text-center p-6 shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer"
-              style={{ width: "100%", height: "260px" }}
+              style={{ width: "100%", height: "230px" }}
             >
               {/* Profile Image */}
               <div className="w-20 h-20 rounded-full bg-gray-100 flex items-center justify-center mb-4 overflow-hidden">
-                {account.account_image ? (
+                {account?.account_image ? (
                   <img
                     src={account?.account_image}
                     className="w-full h-full object-cover"
@@ -121,15 +121,6 @@ const RecomSocialMedia = ({ id }) => {
                 👥 {account.followers_count?.toLocaleString() || 0} Followers
               </div>
 
-              {/* Engagement Rate */}
-              <div className="bg-blue-50 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full mt-auto">
-                Engagement Rate:{" "}
-                {(account.engagement_rate === null
-                  ? 0
-                  : account.engagement_rate
-                ).toFixed(1)}
-                %
-              </div>
             </div>
           ))}
         </div>
