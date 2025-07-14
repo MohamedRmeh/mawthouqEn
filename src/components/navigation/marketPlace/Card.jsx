@@ -6,6 +6,7 @@ import { Link } from "@/i18n/navigation";
 const Card = ({ websites, loading, onPageChange }) => {
   const locale = useLocale();
   const t = useTranslations("MarketPlace");
+  // console.log(websites?.data);
 
   if (loading || !websites) {
     return (
@@ -44,6 +45,7 @@ const Card = ({ websites, loading, onPageChange }) => {
     onPageChange(url);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
   return (
     <div className="w-full md:w-3/4">
       {/* Cards */}
@@ -57,7 +59,7 @@ const Card = ({ websites, loading, onPageChange }) => {
           platforms?.map((site) => (
             <div
               key={site.id}
-              className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-slate-300 flex flex-col h-[290px]" // <-- height ثابت
+              className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-slate-300 flex flex-col h-[290px]"
             >
               <Link locale={locale} href={`/marketplace/${site.id}`}>
                 <img
@@ -84,8 +86,14 @@ const Card = ({ websites, loading, onPageChange }) => {
 
                 <div className="mt-3 flex items-center justify-between text-sm">
                   <span className="font-bold text-[#21275c] line-clamp-1">
-                    {site.price ? `$${(site.price * 1.2).toFixed(2)}` : "$0"}
+                    {site.price
+                      ? `$${(
+                          parseFloat(site.price) *
+                          (1 + (site.tax_percentage ?? 0))
+                        ).toFixed(2)}`
+                      : "$0"}
                   </span>
+
                   {site?.views && (
                     <span className="text-gray-500 line-clamp-1">
                       {site?.views || "0"} views

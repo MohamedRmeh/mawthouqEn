@@ -58,12 +58,25 @@ const Page = () => {
 
   const categories = [
     "",
-    "food",
-    "tech",
     "fashion",
-    "education",
-    "travel",
+    "tech",
     "fitness",
+    "food",
+    "travel",
+    "education",
+    "beauty",
+    "gaming",
+    "music",
+    "art",
+    "sports",
+    "health",
+    "business",
+    "news",
+    "pets",
+    "lifestyle",
+    "diy",
+    "parenting",
+    "finance",
   ];
 
   return (
@@ -81,13 +94,14 @@ const Page = () => {
 
       <div className="flex flex-col md:flex-row gap-5">
         <div className="w-full">
-          <div className="flex flex-col md:flex-row md:items-center gap-6 mb-7">
+          {/* Filters Container with Grid */}
+          <div className="grid items-center md:grid-cols-2 gap-6 mb-7">
             {/* Filter: Category */}
             <div className="flex flex-col gap-2">
               <label className="font-semibold text-[#21275c]">
                 {tf("category")}
               </label>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-3 max-h-40 overflow-auto xl:overflow-visible pr-2">
                 {categories.map((cat) => {
                   const isSelected =
                     filterForm.category === cat ||
@@ -116,7 +130,7 @@ const Page = () => {
             </div>
 
             {/* Filter: Post Duration (days) */}
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1 max-w-xs">
               <label className="font-semibold text-[#21275c]">
                 {tf("postDuration")}
               </label>
@@ -131,11 +145,19 @@ const Page = () => {
                     post_duration_days: e.target.value,
                   })
                 }
-                className="w-70 px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#21275c] transition-shadow"
+                className="w-full px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#21275c] transition-shadow"
               />
             </div>
+
+            {/* هنا تقدر تضيف فلاتر أخرى بنفس التنسيق */}
+            {/* مثال: */}
+            {/* <div className="flex flex-col gap-2 max-w-xs">
+          <label className="font-semibold text-[#21275c]">فلتر آخر</label>
+          <select className="...">...</select>
+        </div> */}
           </div>
 
+          {/* محتوى الكروت */}
           <CardSocial
             data={socialAccounts}
             loading={loading}

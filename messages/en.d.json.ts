@@ -229,7 +229,13 @@ declare const messages: {
     "email": "Email",
     "password": "Password",
     "phone-number": "Phone Number",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "errors": {
+      "emailAndPhoneUsed": "Email and phone number are already in use.",
+      "emailUsed": "Email is already in use. Please enter another email.",
+      "phoneUsed": "Phone number is already in use. Please enter another phone number.",
+      "generic": "An error occurred during registration. Please try again later."
+    }
   },
   "checkout": {
     "featuredText": "Get featured on <name>{name}</name> — trusted by <category>{category}</category> leaders.",
@@ -274,7 +280,6 @@ declare const messages: {
   "socialMedia": {
     "topTitle": "Top Social Platforms 🚀",
     "mainTitle": "Discover top social media accounts for your marketing campaigns.",
-
     "filters": {
       "category": "Category",
       "all": "All",
@@ -284,13 +289,25 @@ declare const messages: {
         "fashion": "Fashion",
         "education": "Education",
         "travel": "Travel",
-        "fitness": "Fitness"
+        "fitness": "Fitness",
+        "beauty": "Beauty",
+        "gaming": "Gaming",
+        "music": "Music",
+        "art": "Art",
+        "sports": "Sports",
+        "health": "Health",
+        "business": "Business",
+        "news": "News",
+        "pets": "Pets",
+        "lifestyle": "Lifestyle",
+        "diy": "DIY",
+        "parenting": "Parenting",
+        "finance": "Finance"
       },
       "postDuration": "Number of publishing days",
       "postDurationPlaceholder": "e.g. 7"
     }
   },
-
   "Verify": {
     "enter-code": "Enter the verification code",
     "verification-code": "Verification Code (e.g., 123456)",

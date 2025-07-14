@@ -63,11 +63,23 @@ const SignupModal = ({ isOpen, onClose, onOpenLoginModal }) => {
       setUserId(response.data.user_id);
       setShowVerifyModal(true);
     } catch (err) {
-      setError(
-        err?.response?.data?.email ||
-          err?.response?.data?.phone ||
-          "An error occurred during registration."
-      );
+      console.log(err);
+
+      const emailError = err?.response?.data?.email?.[0];
+      const phoneError = err?.response?.data?.phone?.[0];
+
+      if (
+        emailError === "validation.unique" &&
+        phoneError === "validation.unique"
+      ) {
+        setError(t("errors.emailAndPhoneUsed"));
+      } else if (emailError === "validation.unique") {
+        setError(t("errors.emailUsed"));
+      } else if (phoneError === "validation.unique") {
+        setError(t("errors.phoneUsed"));
+      } else {
+        setError(emailError || phoneError || t("errors.generic"));
+      }
     } finally {
       setLoading(false);
     }
