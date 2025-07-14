@@ -87,14 +87,14 @@ const Navbar = () => {
           {/* Logo - Left */}
           <div className="flex items-center flex-shrink-0">
             <Link href="/">
-            <Image
-              src="/icons/png-we.png"
-              alt="Company Logo"
-              width={90}
-              height={90}
-              priority
+              <Image
+                src="/icons/png-we.png"
+                alt="Company Logo"
+                width={90}
+                height={90}
+                priority
               />
-              </Link>
+            </Link>
           </div>
 
           {/* Links - Center */}

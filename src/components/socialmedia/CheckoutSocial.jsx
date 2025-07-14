@@ -5,7 +5,7 @@ import CheckoutModalForm from "./CheckoutModal";
 
 const CheckoutSocial = ({ socialData }) => {
   const t = useTranslations("checkoutSocial");
-  const commissionRate = 0.2;
+  const commissionRate = socialData?.tax_percentage;
   const extras = socialData?.extra_features || [];
   const acceptedTypes = socialData?.accepted_content_types || [];
 

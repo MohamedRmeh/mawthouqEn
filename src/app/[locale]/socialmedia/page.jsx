@@ -73,7 +73,7 @@ const Page = () => {
           lang ? "md:text-left" : "md:text-right"
         } mb-7`}
       >
-        <h1 className="text-3xl md:text-5xl font-bold mb-3 text-[#21275c]">
+        <h1 className="text-2xl md:text-4xl font-bold mb-3 text-[#21275c]">
           {t("topTitle")}
         </h1>
         <p className="md:text-lg text-gray-600">{t("mainTitle")}</p>

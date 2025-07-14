@@ -343,7 +343,8 @@
     "emailPlaceholder": "Enter your email address",
     "submit": "Send Reset Link",
     "submitting": "Submitting...",
-    "unexpectedError": "An unexpected error occurred"
+    "unexpectedError": "An unexpected error occurred",
+    "checkEmailMessage": "A password reset link has been sent to your email. Please check your inbox."
   },
   "check-email": {
     "title": "Verify your email",

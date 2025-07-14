@@ -24,7 +24,7 @@ const Page = () => {
         );
         setData(res.data);
       } catch (error) {
-        console.log(error)
+        console.log(error);
         console.error("Error fetching data:", error);
       } finally {
         setLoading(false);
@@ -159,17 +159,16 @@ const Page = () => {
             <p className="font-semibold mb-2">{t("ratings")}</p>
             <ul className={` ${lang === "en" ? "ml-" : "mr-"}  list-disc`}>
               <li className="flex items-center gap-2">
-  {t("finalScore")}:
-  {data?.ratings_summary.final_score > 0 ? (
-    <span className="text-yellow-500 text-xl">
-      {"★".repeat(data?.ratings_summary.final_score)}
-      {"☆".repeat(5 - data?.ratings_summary.final_score)}
-    </span>
-  ) : (
-    <span className="text-gray-400 text-xl">{"☆☆☆☆☆"}</span>
-  )}
-</li>
-
+                {t("finalScore")}:
+                {data?.ratings_summary.final_score > 0 ? (
+                  <span className="text-yellow-500 text-xl">
+                    {"★".repeat(data?.ratings_summary.final_score)}
+                    {"☆".repeat(5 - data?.ratings_summary.final_score)}
+                  </span>
+                ) : (
+                  <span className="text-gray-400 text-xl">{"☆☆☆☆☆"}</span>
+                )}
+              </li>
             </ul>
           </div>
         </div>

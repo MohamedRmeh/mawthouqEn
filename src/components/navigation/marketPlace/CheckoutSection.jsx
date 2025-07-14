@@ -1,6 +1,4 @@
 "use client";
-import Image from "next/image";
-import { FaCcPaypal, FaCcVisa, FaStripe } from "react-icons/fa";
 import React, { useState } from "react";
 import CheckoutModal from "./CheckoutModal";
 import Cookies from "js-cookie";
@@ -10,7 +8,7 @@ const CheckoutSection = ({ websiteData }) => {
   const t = useTranslations("checkout");
 
   const basePrice = parseFloat(websiteData?.price || 0);
-  const commissionRate = 0.2;
+  const commissionRate = parseFloat(websiteData?.tax_percentage || 0);
   const extras = websiteData?.extra_features || [];
   const [selectedExtras, setSelectedExtras] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -42,8 +40,6 @@ const CheckoutSection = ({ websiteData }) => {
     setShowModal(true);
   };
 
-  
-
   return (
     <div className="mt-10 relative">
       {/* Alert Message */}
@@ -69,7 +65,7 @@ const CheckoutSection = ({ websiteData }) => {
         <div className="mb-6 space-y-4">
           <div className="flex justify-between text-gray-800 font-medium">
             <span>{t("base_price")}</span>
-            <span>${(basePrice * 1.2).toFixed(2)}</span>
+            <span>${(basePrice * (1 + commissionRate)).toFixed(2)}</span>
           </div>
 
           {extras.length > 0 && (
@@ -110,24 +106,6 @@ const CheckoutSection = ({ websiteData }) => {
         >
           {t("proceed_to_checkout")}
         </button>
-      </div>
-
-      {/* Payment Icons */}
-      <div className="flex justify-between text-6xl text-[#21275c] cursor-pointer mt-4 px-10">
-        <FaCcPaypal title="PayPal" />
-        <FaCcVisa title="Visa" />
-        <FaStripe title="Stripe" />
-      </div>
-
-      {/* Website Image */}
-      <div className="flex items-center justify-center mt-10">
-        <Image
-          src="https://www.qtonix.com/images/Prose-Moneyback.jpg"
-          width={150}
-          height={100}
-          alt="money-back"
-          className="object-cover"
-        />
       </div>
 
       {/* Website Info */}

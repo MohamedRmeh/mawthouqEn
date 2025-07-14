@@ -10,6 +10,7 @@ const ResetPasswordPage = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState("");
   const router = useRouter();
 
   const handleSubmit = async (e) => {
@@ -25,9 +26,13 @@ const ResetPasswordPage = () => {
         }
       );
 
-      // if (res.status === 200) {
-      //   router.push("/check-your-email");
-      // }
+      if (res.status === 200) {
+        setEmail("");
+        setSuccess(t("checkEmailMessage"));
+        setTimeout(() => {
+          setSuccess("");
+        }, 6000);
+      }
     } catch (err) {
       const message = err.response?.data?.message || t("unexpectedError");
       setError(message);
@@ -60,6 +65,11 @@ const ResetPasswordPage = () => {
               placeholder={t("emailPlaceholder")}
             />
           </div>
+          {success && (
+            <div className="text-green-700 bg-green-100 rounded-md p-2 text-sm">
+              {success}
+            </div>
+          )}
 
           {error && (
             <div className="text-red-600 bg-red-100 rounded-md p-2 text-sm">
