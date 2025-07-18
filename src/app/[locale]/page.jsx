@@ -22,7 +22,7 @@ export default async function Home() {
   return (
     <>
       <Hero texts={heroTexts} />
-      <Suggestions texts={suggestionsTexts} />
+      {/* <Suggestions texts={suggestionsTexts} /> */}
       <Service texts={serviceTexts} />
       <Categories texts={categoriesTexts} />
       <Advantages texts={advantagesTexts} />

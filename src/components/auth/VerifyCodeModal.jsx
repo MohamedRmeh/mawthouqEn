@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useTranslations } from "next-intl";
 
@@ -9,6 +9,17 @@ const VerifyCodeModal = ({ onClose, onOpenLoginModal, userId }) => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
+  const [showEmailNotice, setShowEmailNotice] = useState(false);
+
+  useEffect(() => {
+    if (userId) {
+      setShowEmailNotice(true);
+      const timer = setTimeout(() => {
+        setShowEmailNotice(false);
+      }, 6000);
+      return () => clearTimeout(timer);
+    }
+  }, [userId]);
 
   const handleVerify = async (e) => {
     e.preventDefault();
@@ -25,10 +36,9 @@ const VerifyCodeModal = ({ onClose, onOpenLoginModal, userId }) => {
       );
 
       setSuccessMessage("✅ الكود صحيح، يرجى تسجيل الدخول الآن");
-
       setTimeout(() => {
         setSuccessMessage("");
-        onClose(); // إغلاق VerifyCodeModal
+        onClose();
       }, 2500);
     } catch (err) {
       setError("رمز التحقق غير صحيح");
@@ -50,6 +60,7 @@ const VerifyCodeModal = ({ onClose, onOpenLoginModal, userId }) => {
         <h2 className="text-xl font-bold mb-4 text-center text-[#21275c]">
           {t("enter-code")}
         </h2>
+
         <form onSubmit={handleVerify} className="flex flex-col gap-4">
           <input
             type="text"
@@ -69,9 +80,16 @@ const VerifyCodeModal = ({ onClose, onOpenLoginModal, userId }) => {
           </button>
         </form>
       </div>
+
       {successMessage && (
         <div className="fixed text-lg top-5 right-5 bg-green-500 text-white px-4 py-3 rounded-lg shadow-lg animate-fadeIn">
           {successMessage}
+        </div>
+      )}
+
+      {showEmailNotice && (
+        <div className="fixed top-5 left-1/2 -translate-x-1/2 bg-yellow-100 border border-yellow-400 text-yellow-800 px-4 py-3 rounded-xl shadow-lg animate-fadeIn text-center text-lg">
+          📧 تم إرسال رمز التحقق إلى بريدك الإلكتروني، يرجى مراجعته.
         </div>
       )}
     </div>

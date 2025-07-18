@@ -66,7 +66,7 @@ const Page = () => {
 
   return (
     <section className="w-full px-4 md:px-20 mt-14 mb-20">
-      <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-10">
         {/* Main Content */}
         <div className="flex flex-col gap-10 md:col-span-2">
           <div className="flex flex-col gap-3">

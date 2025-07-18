@@ -11,11 +11,10 @@ const Page = () => {
 
   const [websites, setWebsites] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [filterForm, setFilterForm] = useState("");
-  const [pageUrl, setPageUrl] = useState(
-    `${process.env.NEXT_PUBLIC_API_URL}/websites?${filterForm}`
-  );
+  const [filterForm, setFilterForm] = useState({});
+  const [pageUrl, setPageUrl] = useState("");
 
+  // تحديث رابط API كلما تغيرت الفلاتر
   useEffect(() => {
     const params = new URLSearchParams();
 
@@ -31,8 +30,9 @@ const Page = () => {
       process.env.NEXT_PUBLIC_API_URL
     }/websites?${params.toString()}`;
     setPageUrl(newUrl);
+    console.log(newUrl)
   }, [filterForm]);
-
+  // جلب البيانات من السيرفر
   useEffect(() => {
     const fetchWebsites = async () => {
       setLoading(true);
@@ -46,7 +46,9 @@ const Page = () => {
       }
     };
 
-    fetchWebsites();
+    if (pageUrl) {
+      fetchWebsites();
+    }
   }, [pageUrl]);
 
   return (
@@ -63,11 +65,20 @@ const Page = () => {
       </div>
 
       <div className="flex flex-col md:flex-row gap-5">
-        <FilterSide setFilterForm={setFilterForm} />
+        <FilterSide
+          setFilterForm={
+            (newFilters) =>
+              setFilterForm((prev) => ({ ...prev, ...newFilters, page: 1 })) // إعادة تعيين الصفحة عند تغيير الفلتر
+          }
+        />
         <Card
           websites={websites}
           loading={loading}
-          onPageChange={(url) => setPageUrl(url)}
+          onPageChange={(url) => {
+            const urlObj = new URL(url);
+            const page = urlObj.searchParams.get("page") || 1;
+            setFilterForm((prev) => ({ ...prev, page }));
+          }}
         />
       </div>
     </section>

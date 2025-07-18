@@ -68,7 +68,7 @@ const FilterSide = ({ onFilterChange, setFilterForm }) => {
   );
 
   const defaultFilters = {
-    search: "",
+    name: "",
     language: "",
     content_type: "",
     min_price: 0,
@@ -122,8 +122,8 @@ const FilterSide = ({ onFilterChange, setFilterForm }) => {
         <input
           type="text"
           placeholder={t("searchPlaceholder")}
-          value={filters.search}
-          onChange={(e) => handleInputChange("search", e.target.value)}
+          value={filters.name}
+          onChange={(e) => handleInputChange("name", e.target.value)}
           className="w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
