@@ -78,7 +78,11 @@ const Recommended = ({ id }) => {
                   </a>
                   <div className="mt-4 flex items-center justify-between text-sm">
                     <span className="font-bold text-[#21275c]">
-                      ${site?.price * 1.2}
+                      $
+                      {(
+                        site?.price *
+                        (1 + (site?.tax_percentage || 0))
+                      ).toFixed(2)}
                     </span>
                     {site?.views && (
                       <span className="text-gray-500">{site?.views} views</span>
