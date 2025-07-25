@@ -1,5 +1,4 @@
 "use client";
-
 import Link from "next/link";
 import Image from "next/image";
 import axios from "axios";
@@ -24,7 +23,6 @@ const Page = () => {
         );
         setData(res.data);
       } catch (error) {
-        console.log(error);
         console.error("Error fetching data:", error);
       } finally {
         setLoading(false);

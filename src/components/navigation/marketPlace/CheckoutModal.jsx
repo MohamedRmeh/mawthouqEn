@@ -38,7 +38,7 @@ const CheckoutModal = ({ onClose, selectedExtras, id }) => {
     const formData = new FormData();
 
     if (articleText) {
-      formData.append("article_text", articleText); // notes_for_publisher
+      formData.append("notes_for_publisher", articleText); // notes_for_publisher
     }
 
     if (articleFile) {
@@ -66,7 +66,6 @@ const CheckoutModal = ({ onClose, selectedExtras, id }) => {
           },
         }
       );
-
       setAlertMessage("✅ تم إرسال الطلب بنجاح!");
       setAlertType("success");
       setTimeout(() => {

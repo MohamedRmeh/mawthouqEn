@@ -58,12 +58,11 @@ const CheckoutModalForm = ({
 
     try {
       setSubmitting(true);
-      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/orders`, formData, {
+       const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/orders`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-
       setAlertMessage("✅ تم إرسال الطلب بنجاح!");
       setAlertType("success");
       setTimeout(() => {
