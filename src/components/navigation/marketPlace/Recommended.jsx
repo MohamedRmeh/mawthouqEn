@@ -61,7 +61,7 @@ const Recommended = ({ id }) => {
                   <img
                     src={site.image || "/images/testImg.jpeg"}
                     alt={site?.name}
-                    className="w-full h-44 object-contain cursor-pointer border-b border-slate-200"
+                    className="w-full h-44 object-contain cursor-pointer border-b border-slate-200 drop-shadow-lg p-5"
                   />
                 </Link>
                 <div className="p-5">

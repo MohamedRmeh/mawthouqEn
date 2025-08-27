@@ -13,6 +13,8 @@ import Footer from "@/components/navigation/Footer";
 import AOSProvider from "@/components/lib/AOSProvider";
 import "../globals.css";
 import React, { Suspense } from "react";
+import { getSectionTranslations } from "@/components/lib/getSectionTranslations";
+import { headers } from "next/headers";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -40,6 +42,7 @@ export async function generateMetadata(props) {
 }
 
 export default async function LocaleLayout(props) {
+  const headersList = await headers();
   const { children, params } = props;
   const { locale } = await params;
 
@@ -51,6 +54,7 @@ export default async function LocaleLayout(props) {
   const messages = await getMessages({ locale });
 
   const isArabic = locale === "ar";
+  const footerTranslate = await getSectionTranslations("footer", locale);
 
   return (
     <html lang={locale} dir={isArabic ? "rtl" : "ltr"}>
@@ -67,7 +71,7 @@ export default async function LocaleLayout(props) {
           <main className="antialiased relative flex-1 overflow-hidden">
             <AOSProvider>{children}</AOSProvider>
           </main>
-          <Footer />
+          <Footer texts={footerTranslate} />
         </NextIntlClientProvider>
       </body>
     </html>

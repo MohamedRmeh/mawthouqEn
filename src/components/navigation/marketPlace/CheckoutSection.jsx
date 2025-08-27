@@ -8,11 +8,18 @@ const CheckoutSection = ({ websiteData }) => {
   const t = useTranslations("checkout");
 
   const basePrice = parseFloat(websiteData?.price || 0);
-  const commissionRate = parseFloat(websiteData?.tax_percentage || 0);
+  const commissionRate = parseFloat(websiteData?.tax_percentage || 0); // مثال: 0.1 = 10%
   const extras = websiteData?.extra_features || [];
+
   const [selectedExtras, setSelectedExtras] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
+
+  // دالة موحدة لإضافة الضريبة/العمولة
+  const withTax = (amount) => {
+    const n = parseFloat(amount || 0);
+    return n * (1 + commissionRate);
+  };
 
   const handleToggle = (id) => {
     setSelectedExtras((prev) =>
@@ -20,20 +27,19 @@ const CheckoutSection = ({ websiteData }) => {
     );
   };
 
-  const extrasTotal = selectedExtras.reduce((acc, id) => {
+  // مجموع أسعار الإضافات المختارة قبل/بعد الضريبة
+  const extrasSubtotal = selectedExtras.reduce((acc, id) => {
     const extra = extras.find((e) => e.id === id);
     return acc + (extra ? parseFloat(extra.price) : 0);
   }, 0);
 
-  const subTotal = basePrice;
-  const commission = subTotal * commissionRate;
-  const totalWithCommission = subTotal + commission + extrasTotal;
+  // التوتال النهائي: (الأساس + الإضافات المختارة) بعد الضريبة
+  const totalWithTax = withTax(basePrice + extrasSubtotal);
 
   const handleCheckoutClick = () => {
-    const token = Cookies.get("token"); // أو اسم الكوكي اللي تستخدمه
+    const token = Cookies.get("token");
     if (!token) {
       setAlertMessage("⚠️ You must be logged in to proceed to checkout.");
-      // تختفي الرسالة بعد 4 ثواني
       setTimeout(() => setAlertMessage(""), 4000);
       return;
     }
@@ -63,40 +69,46 @@ const CheckoutSection = ({ websiteData }) => {
         </h2>
 
         <div className="mb-6 space-y-4">
+          {/* سعر الأساس مع الضريبة */}
           <div className="flex justify-between text-gray-800 font-medium">
             <span>{t("base_price")}</span>
-            <span>${(basePrice * (1 + commissionRate)).toFixed(2)}</span>
+            <span>${withTax(basePrice).toFixed(2)}</span>
           </div>
 
+          {/* الإضافات بأسعار شاملة للضريبة */}
           {extras.length > 0 && (
             <div className="flex flex-col gap-3">
-              {extras.map((extra) => (
-                <label
-                  key={extra.id}
-                  className="flex justify-between items-center text-sm text-gray-700"
-                >
-                  <div className="flex items-center gap-3">
-                    <input
-                      type="checkbox"
-                      checked={selectedExtras.includes(extra.id)}
-                      onChange={() => handleToggle(extra.id)}
-                      className="accent-blue-600 w-5 h-5"
-                    />
-                    <span>{extra.title}</span>
-                  </div>
-                  <span className="text-gray-600">
-                    ${parseFloat(extra.price).toFixed(2)}
-                  </span>
-                </label>
-              ))}
+              {extras.map((extra) => {
+                const price = parseFloat(extra.price || 0);
+                return (
+                  <label
+                    key={extra.id}
+                    className="flex justify-between items-center text-sm text-gray-700"
+                  >
+                    <div className="flex items-center gap-3">
+                      <input
+                        type="checkbox"
+                        checked={selectedExtras.includes(extra.id)}
+                        onChange={() => handleToggle(extra.id)}
+                        className="accent-blue-600 w-5 h-5"
+                      />
+                      <span>{extra.title}</span>
+                    </div>
+                    <span className="text-gray-600">
+                      ${withTax(price).toFixed(2)}
+                    </span>
+                  </label>
+                );
+              })}
             </div>
           )}
         </div>
 
+        {/* الإجمالي النهائي بعد الضريبة */}
         <div className="space-y-2 pt-4 mt-6 border-t border-gray-200 text-gray-800">
           <div className="flex justify-between font-semibold text-lg">
             <span>{t("total")}</span>
-            <span>${totalWithCommission.toFixed(2)}</span>
+            <span>${totalWithTax.toFixed(2)}</span>
           </div>
         </div>
 
@@ -106,22 +118,6 @@ const CheckoutSection = ({ websiteData }) => {
         >
           {t("proceed_to_checkout")}
         </button>
-      </div>
-
-      {/* Website Info */}
-      <div className="flex flex-col gap-5 mt-5">
-        <div>
-          <h1 className="font-bold mb-1">{t("lang")}</h1>
-          <p className="underline text-blue-700">
-            {websiteData?.language || "N/A"}
-          </p>
-        </div>
-        <div>
-          <h1 className="font-bold mb-1">{t("website_category")}</h1>
-          <p className="underline text-blue-700">
-            {websiteData?.category || "N/A"}
-          </p>
-        </div>
       </div>
 
       {/* Tailwind animation for fadeInOut */}

@@ -15,7 +15,7 @@ const CustomSelect = ({ label, value, options, onChange }) => {
         onClick={() => setOpen(!open)}
         className="w-full p-3 rounded-xl border border-gray-300 bg-white text-sm shadow-sm cursor-pointer flex justify-between items-center"
       >
-        {value ? t(value) : "Select"}
+        {value ? t(value) : t("select")}
         <svg
           className={`w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}
           fill="none"

@@ -7,12 +7,36 @@ import {
   FaInstagram,
   FaYoutube,
 } from "react-icons/fa";
-import { useTranslations, useLocale } from "next-intl";
+import { useLocale } from "next-intl";
 
-const Footer = () => {
-  const t = useTranslations("Footer");
+const Footer = ({ texts = {} }) => {
   const locale = useLocale();
   const lang = locale === "en";
+
+  // تفكيك مع قيم افتراضية لتفادي undefined
+  const {
+    siteName = "Mawthoqpost",
+    description = "",
+    email = "Email",
+    followUs = "Follow Us",
+    stayConnected = "",
+    allRightsReserved = "All rights reserved.",
+    more_info = "More Information",
+    privacy_policy = "Privacy Policy",
+    terms_of_use = "Terms of Use",
+    refund_policy = "Refund Policy",
+    how_it_works = "How does the platform work?",
+    quickLinks: ql = {}, // كائن الروابط السريعة
+    quickLinksHeading = "Quick Links", // عنوان القسم إن لم يوجد في النصوص
+  } = texts;
+
+  // تفكيك عناوين الروابط السريعة من الكائن الفرعي
+  const {
+    home = "Home",
+    marketplace = "Marketplace",
+    aboutUs = "About Us",
+    helpSupport = "Help & Support",
+  } = ql;
 
   return (
     <footer className="bg-[#21275c] text-white py-10">
@@ -24,25 +48,25 @@ const Footer = () => {
         >
           {/* وصف الموقع */}
           <div className="space-y-4 lg:col-span-2">
-            <h2 className="text-xl font-bold">{t("siteName")}</h2>
+            <h2 className="text-xl font-bold">{siteName}</h2>
             <p className="text-sm text-gray-300 leading-relaxed lg:max-w-[80%]">
-              {t("description")}
+              {description}
             </p>
             <p className="text-sm text-gray-400">
-              {t("email")}: support@mawthoqpost.com
+              {email}: support@mawthoqpost.com
             </p>
           </div>
 
           {/* روابط سريعة */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">{t("quickLinks")}</h3>
+            <h3 className="text-lg font-semibold">{quickLinksHeading}</h3>
             <ul className="space-y-2 text-sm text-gray-200">
               <li>
                 <Link
                   href={{ pathname: "/", locale }}
                   className="hover:underline"
                 >
-                  {t("home")}
+                  {home}
                 </Link>
               </li>
               <li>
@@ -50,7 +74,7 @@ const Footer = () => {
                   href={{ pathname: "/marketplace", locale }}
                   className="hover:underline"
                 >
-                  {t("marketplace")}
+                  {marketplace}
                 </Link>
               </li>
               <li>
@@ -58,7 +82,7 @@ const Footer = () => {
                   href={{ pathname: "/about", locale }}
                   className="hover:underline"
                 >
-                  {t("aboutUs")}
+                  {aboutUs}
                 </Link>
               </li>
               <li>
@@ -66,22 +90,22 @@ const Footer = () => {
                   href={{ pathname: "/support", locale }}
                   className="hover:underline"
                 >
-                  {t("helpSupport")}
+                  {helpSupport}
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* خدماتنا */}
+          {/* المزيد من المعلومات */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">{t("more_info")}</h3>
+            <h3 className="text-lg font-semibold">{more_info}</h3>
             <ul className="space-y-2 text-sm text-gray-200">
               <li>
                 <Link
                   href={{ pathname: "/privacy_policy", locale }}
                   className="hover:underline"
                 >
-                  {t("privacy_policy")}
+                  {privacy_policy}
                 </Link>
               </li>
               <li>
@@ -89,7 +113,7 @@ const Footer = () => {
                   href={{ pathname: "/terms_of_use", locale }}
                   className="hover:underline"
                 >
-                  {t("terms_of_use")}
+                  {terms_of_use}
                 </Link>
               </li>
               <li>
@@ -97,7 +121,7 @@ const Footer = () => {
                   href={{ pathname: "/refund_policy", locale }}
                   className="hover:underline"
                 >
-                  {t("refund_policy")}
+                  {refund_policy}
                 </Link>
               </li>
               <li>
@@ -105,7 +129,7 @@ const Footer = () => {
                   href={{ pathname: "/how_it_works", locale }}
                   className="hover:underline"
                 >
-                  {t("how_it_works")}
+                  {how_it_works}
                 </Link>
               </li>
             </ul>
@@ -113,8 +137,8 @@ const Footer = () => {
 
           {/* تابعنا */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">{t("followUs")}</h3>
-            <p className="text-sm text-gray-300">{t("stayConnected")}</p>
+            <h3 className="text-lg font-semibold">{followUs}</h3>
+            <p className="text-sm text-gray-300">{stayConnected}</p>
             <div className="flex gap-4 text-white text-lg justify-center sm:justify-start">
               <a
                 href="https://www.facebook.com/people/%D9%85%D9%88%D8%AB%D9%88%D9%82-%D8%A8%D9%88%D8%B3%D8%AA-mawthoqpostcom/61561932255444/"
@@ -162,7 +186,7 @@ const Footer = () => {
 
         {/* الحقوق */}
         <div className="border-t border-gray-700 mt-10 pt-6 text-center text-sm text-gray-400">
-          © {new Date().getFullYear()} Mawthoqpost. {t("allRightsReserved")}
+          © {new Date().getFullYear()} {siteName}. {allRightsReserved}
         </div>
       </div>
     </footer>

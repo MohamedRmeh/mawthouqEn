@@ -65,7 +65,7 @@ const Card = ({ websites, loading, onPageChange }) => {
                 <img
                   src={site?.image || "/images/testImg.jpeg"}
                   alt={site.name}
-                  className="w-full h-40 object-contain border-b border-slate-300 cursor-pointer"
+                  className="w-full h-40 object-contain border-b border-slate-300 cursor-pointer drop-shadow-lg p-5"
                 />
               </Link>
 
@@ -94,9 +94,9 @@ const Card = ({ websites, loading, onPageChange }) => {
                       : "$0"}
                   </span>
 
-                  {site?.views && (
+                  {site?.domain_authority && (
                     <span className="text-gray-500 line-clamp-1">
-                      {site?.views || "0"} views
+                      DA: {site?.domain_authority || "0"}
                     </span>
                   )}
                 </div>

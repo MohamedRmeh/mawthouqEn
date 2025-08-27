@@ -148,13 +148,6 @@ const Page = () => {
                 className="w-full px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#21275c] transition-shadow"
               />
             </div>
-
-            {/* هنا تقدر تضيف فلاتر أخرى بنفس التنسيق */}
-            {/* مثال: */}
-            {/* <div className="flex flex-col gap-2 max-w-xs">
-          <label className="font-semibold text-[#21275c]">فلتر آخر</label>
-          <select className="...">...</select>
-        </div> */}
           </div>
 
           {/* محتوى الكروت */}

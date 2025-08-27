@@ -17,7 +17,7 @@ const Page = () => {
   const { id } = useParams();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  console.log(lang);
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
@@ -73,6 +73,38 @@ const Page = () => {
     );
   }
 
+  // helper (اختياري: ضعها فوق المكوّن أو في ملف utils)
+  // ينسّق "YYYY-MM-DD HH:mm:ss" بشكل واضح بدون GMT
+  const formatYmdHms = (
+    s,
+    locale = "ar",
+    { asUTC = false, includeSeconds = true } = {}
+  ) => {
+    if (!s) return "";
+    const [datePart, timePart] = s.trim().split(" ");
+    if (!datePart || !timePart) return s;
+
+    const [y, m, d] = datePart.split("-").map(Number);
+    const [hh, mm, ss] = timePart.split(":").map(Number);
+
+    const dt = asUTC
+      ? new Date(Date.UTC(y, m - 1, d, hh, mm, ss))
+      : new Date(y, m - 1, d, hh, mm, ss);
+
+    const opts = {
+      year: "numeric",
+      month: "short",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    };
+    if (includeSeconds) opts.second = "2-digit";
+    if (asUTC) opts.timeZone = "UTC"; // نحدّد التوقيت لكن لا نعرض اسمه
+
+    return new Intl.DateTimeFormat(locale, opts).format(dt);
+  };
+
   return (
     <section className={`w-full px-4 md:px-20 mt-14 mb-20`}>
       <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-10">
@@ -101,11 +133,11 @@ const Page = () => {
               height={320}
               src={data?.image || "/images/testImg.jpeg"}
               alt={data.name}
-              className="rounded-xl object-contain shadow-md w-full max-w-[320px] h-45"
+              className="rounded-xl object-contain shadow-md w-full max-w-[320px] h-45 drop-shadow-lg p-5"
             />
             <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-gray-300 to-transparent md:h-[200px] md:w-px md:bg-gradient-to-b hidden md:block" />
             <div
-              className={`flex flex-col gap-3 text-gray-800 text-sm md:text-base text-center ${
+              className={`flex flex-col gap-3 text-gray-800 text-sm md:text-base text-center md:overflow-auto md:max-h-50 scroll-hidden ${
                 lang === "en" ? "md:text-left" : "md:text-right"
               }`}
             >
@@ -134,30 +166,68 @@ const Page = () => {
                   </span>
                 </span>
               )}
+              {data?.language && (
+                <span>
+                  {t("language")}:{" "}
+                  <span className="bg-gray-100 px-2 py-0.5 rounded text-sm font-medium text-gray-700">
+                    {{
+                      Arabic: lang === "ar" ? "العربية" : "arabic",
+                      English: lang === "en" ? "English" : "إنجليزية",
+                    }[data?.language] || ""}
+                  </span>
+                </span>
+              )}
+              {data?.category && (
+                <span>
+                  {t("category")}:{" "}
+                  <span className="bg-gray-100 px-2 py-0.5 rounded text-sm font-medium text-gray-700">
+                    {t(`categories.${data.category}`)}
+                  </span>
+                </span>
+              )}
+              {data?.domain_authority && (
+                <span>
+                  {t("da")}:{" "}
+                  <span className="bg-gray-100 px-2 py-0.5 rounded text-sm font-medium text-gray-700">
+                    {`${data?.domain_authority}`}
+                  </span>
+                </span>
+              )}
+              {data?.domain_authority_updated_at && (
+                <span>
+                  {t("daUpdate")}:{" "}
+                  <span
+                    className="bg-gray-100 px-2 py-0.5 rounded text-sm font-medium text-gray-700"
+                    title={data?.domain_authority_updated_at}
+                  >
+                    {formatYmdHms(
+                      data?.domain_authority_updated_at,
+                      typeof i18n !== "undefined" && i18n.language
+                        ? i18n.language
+                        : typeof navigator !== "undefined"
+                        ? navigator.language
+                        : "en"
+                    )}
+                  </span>
+                </span>
+              )}
+              {data?.ratings_summary?.final_score !== undefined && (
+                <span>
+                  {t("rating")}:{" "}
+                  <span className="text-yellow-500 text-xl">
+                    {"★".repeat(data.ratings_summary.final_score)}
+                    {"☆".repeat(5 - data.ratings_summary.final_score)}
+                  </span>
+                </span>
+              )}
             </div>
           </div>
 
           <div className="text-base md:text-lg leading-relaxed text-gray-700">
-            <p className="leading-relaxed mb-5 font-semibold text-gray-700">
+            <p className="leading-relaxed mb-2 font-semibold text-gray-700">
               {t("lastType")}
             </p>
             <p className="mb-5">{data.description}</p>
-          </div>
-          <div className="text-base md:text-lg leading-relaxed text-gray-700">
-            <p className="font-semibold mb-2">{t("ratings")}</p>
-            <ul className={` ${lang === "en" ? "ml-4" : "mr-4"}  list-disc`}>
-              <li className="flex items-center gap-2">
-                {t("finalScore")}:
-                {data?.ratings_summary.final_score > 0 ? (
-                  <span className="text-yellow-500 text-xl">
-                    {"★".repeat(data?.ratings_summary.final_score)}
-                    {"☆".repeat(5 - data?.ratings_summary.final_score)}
-                  </span>
-                ) : (
-                  <span className="text-gray-400 text-xl">{"☆☆☆☆☆"}</span>
-                )}
-              </li>
-            </ul>
           </div>
         </div>
 
