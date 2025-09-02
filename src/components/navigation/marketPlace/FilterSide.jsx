@@ -1,11 +1,10 @@
 "use client";
 import React, { useState, useCallback, useEffect } from "react";
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
 import debounce from "lodash/debounce";
 
 const CustomSelect = ({ label, value, options, onChange }) => {
   const t = useTranslations("MarketPlace");
-
   const [open, setOpen] = useState(false);
 
   return (
@@ -15,7 +14,7 @@ const CustomSelect = ({ label, value, options, onChange }) => {
         onClick={() => setOpen(!open)}
         className="w-full p-3 rounded-xl border border-gray-300 bg-white text-sm shadow-sm cursor-pointer flex justify-between items-center"
       >
-        {value ? t(value) : t("select")}
+        {value ? t(String(value)) || String(value) : t("select")}
         <svg
           className={`w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}
           fill="none"
@@ -30,16 +29,16 @@ const CustomSelect = ({ label, value, options, onChange }) => {
           />
         </svg>
       </div>
+
       {open && (
         <div className="absolute z-10 mt-2 w-full bg-white border border-gray-200 rounded-xl shadow-lg max-h-60 overflow-auto">
           {options.map((option) => {
-            const translatedOption = t(String(option));
-            const displayText =
-              translatedOption === option ? option : translatedOption;
-
+            const translated = t(String(option));
+            const display =
+              translated === String(option) ? String(option) : translated;
             return (
               <div
-                key={option}
+                key={String(option)}
                 onClick={() => {
                   onChange(option);
                   setOpen(false);
@@ -48,7 +47,7 @@ const CustomSelect = ({ label, value, options, onChange }) => {
                   option === value ? "bg-blue-100 text-blue-600" : ""
                 }`}
               >
-                {displayText}
+                {display}
               </div>
             );
           })}
@@ -60,42 +59,48 @@ const CustomSelect = ({ label, value, options, onChange }) => {
 
 const FilterSide = ({ onFilterChange, setFilterForm }) => {
   const t = useTranslations("MarketPlace");
-  const debouncedPriceUpdate = useCallback(
-    debounce((value) => {
-      handleInputChange("min_price", value);
-    }, 300),
-    []
-  );
 
   const defaultFilters = {
     name: "",
     language: "",
     content_type: "",
-    min_price: 0,
-    domainAuthority: "",
-    speed: "",
+    min_price: "", // <== مبدئيًا فاضي مش صفر
+    domain_authority: "",
+    max_avg_publish_time: "",
     audience: "",
   };
 
   const [filters, setFilters] = useState(defaultFilters);
   const [showAllTypes, setShowAllTypes] = useState(false);
-  const [localPrice, setLocalPrice] = useState(0);
+  const [localPrice, setLocalPrice] = useState(0); // فقط للعرض في السلايدر
+
   useEffect(() => {
-    setLocalPrice(filters.min_price);
+    setLocalPrice(filters.min_price !== "" ? Number(filters.min_price) : 0);
   }, [filters.min_price]);
 
-  const handleInputChange = (key, value) => {
-    const updatedFilters = { ...filters, [key]: value };
-    setFilters(updatedFilters);
-    onFilterChange?.(updatedFilters);
-    setFilterForm?.(updatedFilters);
+  const pushUpstream = (updated) => {
+    setFilters(updated);
+    onFilterChange?.(updated);
+    setFilterForm?.(updated);
   };
 
+  const handleInputChange = (key, value) => {
+    const updated = { ...filters, [key]: value };
+    pushUpstream(updated);
+  };
+
+  const debouncedPriceUpdate = useCallback(
+    debounce((value) => {
+      // لو القيمة > 0 نرسلها، غير كده نخليها ""
+      handleInputChange("min_price", value > 0 ? value : "");
+    }, 300),
+    []
+  );
+
   const resetFilters = () => {
-    setFilters(defaultFilters);
-    onFilterChange?.(defaultFilters);
-    setFilterForm?.(defaultFilters);
+    pushUpstream(defaultFilters);
     setShowAllTypes(false);
+    setLocalPrice(0);
   };
 
   const allContentTypes = [
@@ -109,7 +114,6 @@ const FilterSide = ({ onFilterChange, setFilterForm }) => {
     "press_release",
     "company_profile",
   ];
-
   const visibleContentTypes = showAllTypes
     ? allContentTypes
     : allContentTypes.slice(0, 4);
@@ -184,7 +188,7 @@ const FilterSide = ({ onFilterChange, setFilterForm }) => {
       {/* Price Range */}
       <div>
         <label className="block text-sm font-medium mb-2">
-          {t("priceRange", { min_price: filters.min_price })}
+          {t("priceRange", { min_price: filters.min_price || 0 })}
         </label>
         <input
           type="range"
@@ -193,9 +197,9 @@ const FilterSide = ({ onFilterChange, setFilterForm }) => {
           step="10"
           value={localPrice}
           onChange={(e) => {
-            const newValue = parseInt(e.target.value);
-            setLocalPrice(newValue); // تحديث فوري للشكل
-            debouncedPriceUpdate(newValue); // تحديث مؤجل للفلاتر
+            const newValue = parseInt(e.target.value, 10);
+            setLocalPrice(newValue);
+            debouncedPriceUpdate(newValue);
           }}
           className="w-full accent-blue-500"
         />
@@ -204,11 +208,9 @@ const FilterSide = ({ onFilterChange, setFilterForm }) => {
       {/* Domain Authority */}
       <CustomSelect
         label={t("domainAuthority")}
-        value={filters.domainAuthority}
+        value={filters.domain_authority}
         options={[10, 30, 50, 70, 90]}
-        onChange={(value) => {
-          handleInputChange("domain_authority", value);
-        }}
+        onChange={(value) => handleInputChange("domain_authority", value)}
       />
 
       {/* Publish Speed */}
@@ -229,10 +231,10 @@ const FilterSide = ({ onFilterChange, setFilterForm }) => {
             <label key={value} className="flex items-center gap-2">
               <input
                 type="radio"
-                name="speed"
+                name="max_avg_publish_time"
                 className="accent-blue-500"
                 value={value}
-                checked={filters.max_avg_publish_time === value}
+                checked={String(filters.max_avg_publish_time) === String(value)}
                 onChange={() =>
                   handleInputChange("max_avg_publish_time", value)
                 }
@@ -248,12 +250,10 @@ const FilterSide = ({ onFilterChange, setFilterForm }) => {
         label={t("targetAudience")}
         value={filters.audience}
         options={["global", "middle_east"]}
-        onChange={(value) => {
-          handleInputChange("audience", value);
-        }}
+        onChange={(value) => handleInputChange("audience", value)}
       />
 
-      {/* Reset Button */}
+      {/* Reset */}
       <div className="pt-2">
         <button
           onClick={resetFilters}

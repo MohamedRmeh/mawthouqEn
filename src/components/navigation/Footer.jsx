@@ -29,7 +29,6 @@ const Footer = ({ texts = {} }) => {
     quickLinks: ql = {}, // كائن الروابط السريعة
     quickLinksHeading = "Quick Links", // عنوان القسم إن لم يوجد في النصوص
   } = texts;
-
   // تفكيك عناوين الروابط السريعة من الكائن الفرعي
   const {
     home = "Home",
@@ -59,14 +58,16 @@ const Footer = ({ texts = {} }) => {
 
           {/* روابط سريعة */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">{quickLinksHeading}</h3>
+            <h3 className="text-lg font-semibold">
+              {ql?.quickLinksHeading || "Quick Links"}
+            </h3>
             <ul className="space-y-2 text-sm text-gray-200">
               <li>
                 <Link
                   href={{ pathname: "/", locale }}
                   className="hover:underline"
                 >
-                  {home}
+                  {ql?.home}
                 </Link>
               </li>
               <li>
@@ -74,7 +75,7 @@ const Footer = ({ texts = {} }) => {
                   href={{ pathname: "/marketplace", locale }}
                   className="hover:underline"
                 >
-                  {marketplace}
+                  {ql?.marketplace}
                 </Link>
               </li>
               <li>
@@ -82,7 +83,7 @@ const Footer = ({ texts = {} }) => {
                   href={{ pathname: "/about", locale }}
                   className="hover:underline"
                 >
-                  {aboutUs}
+                  {ql?.aboutUs}
                 </Link>
               </li>
               <li>
@@ -90,7 +91,7 @@ const Footer = ({ texts = {} }) => {
                   href={{ pathname: "/support", locale }}
                   className="hover:underline"
                 >
-                  {helpSupport}
+                  {ql?.helpSupport}
                 </Link>
               </li>
             </ul>
